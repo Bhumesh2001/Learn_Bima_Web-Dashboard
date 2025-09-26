@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
+/* small custom overrides */
+.hero-gradient {
+  background: linear-gradient(90deg, rgba(8,78,205,0.08), rgba(0,0,0,0));
+}
+.card-shadow {
+  box-shadow: 0 6px 20px rgba(10,37,64,0.06);
+}
