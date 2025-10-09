@@ -64,13 +64,6 @@ const App = () => {
   ];
 
   const [current, setCurrent] = useState(0);
-
-  const prevSlide = () =>
-    setCurrent(current === 0 ? slides.length - 1 : current - 1);
-
-  const nextSlide = () =>
-    setCurrent(current === slides.length - 1 ? 0 : current + 1);
-
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
