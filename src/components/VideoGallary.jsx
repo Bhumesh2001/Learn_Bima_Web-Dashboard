@@ -52,7 +52,7 @@ export default function VideoPodcastGallery() {
     }, [videos.length]);
 
     return (
-        <section className="py-16 px-5 sm:px-10 bg-gradient-to-b from-[#eaf6ff] to-[#d6efff] relative overflow-hidden">
+        <section className="py-15 px-5 sm:px-10 bg-gradient-to-b from-[#eaf6ff] to-[#d6efff] relative overflow-hidden">
             {/* Title */}
             <div className="text-center mb-12">
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0a75a9] mb-3 tracking-tight">
@@ -113,4 +113,4 @@ export default function VideoPodcastGallery() {
             </div>
         </section>
     );
-}
+};

@@ -66,6 +66,7 @@ const App = () => {
   const [current, setCurrent] = useState(0);
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
 
   const controlHeader = () => {
     if (typeof window !== "undefined") {
@@ -97,8 +98,10 @@ const App = () => {
   return (
     <div className="font-sans text-gray-800 bg-white">
       {/* Header */}
-      <header className={`fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-lg shadow-md transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"
-        }`}>
+      <header
+        className={`fixed top-0 left-0 w-full z-50 bg-white/60 backdrop-blur-lg shadow-md transition-transform duration-300 ${showHeader ? "translate-y-0" : "-translate-y-full"
+          }`}
+      >
         <div className="max-w-7xl mx-auto px-5 sm:px-10 flex items-center justify-between py-3">
           {/* Logo */}
           <div className="flex items-center space-x-3">
@@ -132,7 +135,10 @@ const App = () => {
           </button>
 
           {/* Mobile Menu Button */}
-          <button className="md:hidden text-gray-800 hover:text-[#0a75a9] transition-colors">
+          <button
+            className="md:hidden text-gray-800 hover:text-[#0a75a9] transition-colors"
+            onClick={() => setIsOpen(!isOpen)}
+          >
             <svg
               className="w-7 h-7"
               fill="none"
@@ -145,9 +151,35 @@ const App = () => {
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M4 6h16M4 12h16m-7 6h7"
-              ></path>
+              />
             </svg>
           </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <div
+          className={`md:hidden bg-white/70 backdrop-blur-xl border-t border-gray-200 shadow-lg overflow-hidden transform transition-all duration-500 ease-in-out ${isOpen ? "max-h-[400px] opacity-100 translate-y-0" : "max-h-0 opacity-0 -translate-y-4"
+            }`}
+        >
+          <nav className="flex flex-col p-5 space-y-5 text-gray-800 font-medium">
+            {["Home", "About Us", "Team", "Academy", "Contact Us"].map((item, i) => (
+              <a
+                key={i}
+                href="#"
+                className="hover:text-[#0a75a9] transition-colors duration-300"
+                onClick={() => setIsOpen(false)}
+              >
+                {item}
+              </a>
+            ))}
+
+            <button
+              onClick={() => setIsOpen(false)}
+              className="px-4 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-[#0a75a9] to-[#094e7a] shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+            >
+              Register Now
+            </button>
+          </nav>
         </div>
       </header>
 
@@ -439,7 +471,7 @@ const App = () => {
         </section>
 
         {/* Access to the Learning Platform Section */}
-        <section className="py-16 px-5 sm:px-10 md:px-20 bg-gradient-to-b from-[#f5f9ff] to-[#e0f4ff]">
+        <section className="py-15 px-5 sm:px-10 md:px-20 bg-gradient-to-b from-[#f5f9ff] to-[#e0f4ff]">
           <div className="container mx-auto flex flex-col items-center gap-10">
             {/* Top: Image and Text */}
             <div className="w-full flex flex-col lg:flex-row items-center lg:items-center justify-between gap-10">
@@ -476,7 +508,7 @@ const App = () => {
                   key={idx}
                   className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 text-center flex flex-col items-center gap-2 transition-all duration-500"
                 >
-                  <div className={`text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent animate-pulse`}>
+                  <div className={`text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
                     {stat.value}
                   </div>
                   <p className="text-gray-700 font-semibold text-sm sm:text-base">{stat.label}</p>
@@ -491,7 +523,7 @@ const App = () => {
         </section> */}
 
         {/* Meet the Experts Section */}
-        <section className="py-16 px-5 sm:px-10 md:px-20 bg-gradient-to-b from-[#f5f9ff] to-[#e0f4ff] relative overflow-hidden">
+        <section className="py-15 px-5 sm:px-10 md:px-20 bg-gradient-to-b from-[#f5f9ff] to-[#e0f4ff] relative overflow-hidden">
           {/* Subtle background pattern */}
           <div
             className="absolute inset-0 z-0 opacity-10"
@@ -577,7 +609,7 @@ const App = () => {
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white pt-15 relative overflow-hidden">
+      <footer className="bg-gray-900 text-white pt-10 relative overflow-hidden">
         {/* Wave Shape on top */}
         <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
           <svg
@@ -710,7 +742,7 @@ const App = () => {
         </div>
 
         {/* Copyright */}
-        <div className="mt-16 border-t border-gray-700 py-4 text-center bg-gradient-to-r from-[#0a75a9]/10 to-[#45b3de]/10 relative z-10">
+        <div className="mt-10 border-t border-gray-700 py-4 text-center bg-gradient-to-r from-[#0a75a9]/10 to-[#45b3de]/10 relative z-10">
           <p className="text-gray-400 font-medium">&copy; 2025 LearnBima. All rights reserved.</p>
         </div>
       </footer>

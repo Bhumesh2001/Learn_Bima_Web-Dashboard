@@ -12,8 +12,8 @@ export default function Testimonials() {
         slidesToScroll: 1,
         arrows: false,
         responsive: [
-            { breakpoint: 1024, settings: { slidesToShow: 2 } },
-            { breakpoint: 640, settings: { slidesToShow: 1 } },
+            { breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+            { breakpoint: 640, settings: { slidesToShow: 1, slidesToScroll: 1 } },
         ],
     };
 
@@ -47,33 +47,34 @@ export default function Testimonials() {
 
     return (
         <section className="py-15 bg-gradient-to-b from-[#f5f9ff] to-[#e0f4ff] relative">
-            <div className="container mx-auto text-center">
-                <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0a75a9]">
+            <div className="container mx-auto text-center px-4 sm:px-6 lg:px-8">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0a75a9] mb-8">
                     What Our <span className="text-[#45b3de]">Students Say</span>
                 </h2>
 
                 <Slider {...settings}>
                     {testimonials.map((t, index) => (
-                        <div key={index} className="px-4 py-15">
-                            <div className="relative p-6 rounded-3xl shadow-2xl transform hover:-translate-y-2 transition-all duration-500 h-[260px] flex flex-col space-y-4 bg-gradient-to-br from-[#0a75a9]/10 to-[#45b3de]/10">
+                        <div key={index} className="px-3 pb-10 sm:px-4">
+                            <div className="relative p-6 rounded-3xl shadow-2xl transform hover:-translate-y-1 transition-all duration-500 flex flex-col justify-between h-full bg-gradient-to-br from-[#0a75a9]/10 to-[#45b3de]/10">
+
                                 {/* Star Rating */}
-                                <div className="flex justify-center">
+                                <div className="flex justify-center mb-2">
                                     {[...Array(5)].map((_, i) => (
-                                        <Star key={i} size={20} className="text-yellow-400" />
+                                        <Star key={i} size={18} className="text-yellow-400" />
                                     ))}
                                 </div>
 
                                 {/* Testimonial Text */}
-                                <p className="italic text-gray-700 overflow-hidden text-ellipsis line-clamp-3">
+                                <p className="italic text-gray-700 text-sm sm:text-base md:text-base overflow-hidden line-clamp-5 mb-4">
                                     {t.text}
                                 </p>
 
                                 {/* User Info */}
-                                <div className="flex items-center justify-center space-x-4 mt-4">
-                                    <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-[#0a75a9] to-[#45b3de] flex-shrink-0 shadow-lg"></div>
-                                    <div>
-                                        <h3 className="font-bold text-lg">{t.name}</h3>
-                                        <p className="text-sm text-gray-500">{t.college}</p>
+                                <div className="flex items-center justify-center sm:justify-start space-x-3 mt-auto">
+                                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gradient-to-tr from-[#0a75a9] to-[#45b3de] flex-shrink-0 shadow-lg"></div>
+                                    <div className="text-left">
+                                        <h3 className="font-bold text-sm sm:text-base">{t.name}</h3>
+                                        <p className="text-xs sm:text-sm text-gray-500">{t.college}</p>
                                     </div>
                                 </div>
                             </div>
