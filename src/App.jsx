@@ -8,6 +8,7 @@ import logo from './assets/LBlogo.webp';
 import image1 from "./assets/lb1.webp"
 import Testimonials from './components/Testimonial';
 import VideoPodcastGallery from './components/VideoGallary';
+import Blog from './components/Blog';
 // import ImageGallery from './components/Gallary'
 
 import img8 from './assets/img1.jpeg'
@@ -368,7 +369,7 @@ const App = () => {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="relative group p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transform hover:-translate-y-3 transition-all duration-500 text-center flex flex-col items-center"
+                  className="relative group p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-500 text-center flex flex-col items-center"
                 >
                   {/* Icon with gradient hover */}
                   <div className="relative mb-5 w-20 h-20 flex items-center justify-center">
@@ -393,6 +394,9 @@ const App = () => {
             </div>
           </div>
         </section>
+
+        {/* blog section */}
+        <Blog />
 
         {/* podcast video gallary */}
         <VideoPodcastGallery />
@@ -442,7 +446,7 @@ const App = () => {
               ].map((item, index) => (
                 <div
                   key={index}
-                  className="group relative p-8 rounded-3xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-3 transition-all duration-500 bg-gradient-to-br from-white/80 to-white/90 backdrop-blur-md flex flex-col items-center text-center"
+                  className="group relative p-8 rounded-3xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-500 bg-gradient-to-br from-white/80 to-white/90 backdrop-blur-md flex flex-col items-center text-center"
                 >
                   {/* Gradient Icon Circle */}
                   <div className="relative mb-5 w-20 h-20 flex items-center justify-center">
@@ -502,11 +506,11 @@ const App = () => {
               {[
                 { value: "300K", label: "Students Registered", gradient: "from-[#0a75a9] to-[#45b3de]" },
                 { value: "95%", label: "Training Completed", gradient: "from-[#45b3de] to-[#0a75a9]" },
-                { value: "20K", label: "Students Placed", gradient: "from-[#0a75a9] to-[#094e7a]" },
+                { value: "20K", label: "Students Placed", gradient: "from-[#0a75a9] to-[#45b3de]" },
               ].map((stat, idx) => (
                 <div
                   key={idx}
-                  className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 text-center flex flex-col items-center gap-2 transition-all duration-500"
+                  className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 text-center flex flex-col items-center gap-2 transition-all duration-500"
                 >
                   <div className={`text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
                     {stat.value}
@@ -565,7 +569,7 @@ const App = () => {
               ].map((expert, idx) => (
                 <div
                   key={idx}
-                  className="relative p-6 rounded-3xl bg-white shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 text-center flex flex-col items-center"
+                  className="relative p-6 rounded-3xl bg-white shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 text-center flex flex-col items-center"
                 >
                   {/* Gradient overlay behind image */}
                   <div className="absolute -top-8 -left-8 w-28 h-28 sm:w-36 sm:h-36 bg-gradient-to-tr from-[#0a75a9] via-[#45b3de] to-[#0a75a9] rounded-full opacity-30 blur-3xl animate-animateGradient"></div>
