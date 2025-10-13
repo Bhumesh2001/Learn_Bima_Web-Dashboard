@@ -1,6 +1,8 @@
 import { Calendar, User } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
 export default function BlogSection() {
+    const navigate = useNavigate();
     const blogs = [
         {
             title: "Understanding Life Insurance Basics",
@@ -82,13 +84,25 @@ export default function BlogSection() {
                             </div>
 
                             {/* Read More Button */}
-                            <div className="px-6 pb-6">
-                                <button className="mt-3 w-full py-2 rounded-full bg-gradient-to-r from-[#0a75a9] to-[#094e7a] text-white font-semibold hover:shadow-lg hover:scale-[1.02] transition-all hover:cursor-pointer">
+                            {/* <div className="px-6 pb-6">
+                                <button className="mt-3 w-full py-2 rounded-full bg-gradient-to-r from-[#0a75a9] to-[#094e7a] text-white font-semibold hover:shadow-lg hover:scale-[1.02] transition-all hover:cursor-pointer"
+                                    onClick={() => navigate('/blog')}
+                                >
                                     Read More
                                 </button>
-                            </div>
+                            </div> */}
                         </div>
                     ))}
+                </div>
+
+                {/* View All Blogs Button */}
+                <div className="mt-12 text-center">
+                    <button
+                        onClick={() => navigate('/blog')}
+                        className="px-8 py-3 bg-[#0a75a9] hover:bg-[#094e7a] text-white font-semibold rounded-full shadow-lg hover:shadow-xl transition-all hover:cursor-pointer"
+                    >
+                        View All Blogs
+                    </button>
                 </div>
             </div>
         </section>
