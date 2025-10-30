@@ -1,0 +1,65 @@
+[
+    {
+        "title": "Understanding React Hooks",
+        "shortDescription": "A brief guide to understanding React Hooks and how they simplify state management.",
+        "longDescription": "Full content of React Hooks blog...",
+        "author": "Alice Johnson",
+        "category": "React"
+    },
+    {
+        "title": "Node.js Best Practices",
+        "shortDescription": "Learn the best practices to follow when building Node.js applications.",
+        "longDescription": "Full content of Node.js Best Practices...",
+        "author": "Bob Smith",
+        "category": "Node.js"
+    },
+    {
+        "title": "Introduction to TypeScript",
+        "shortDescription": "Why TypeScript is gaining popularity and how it can help in JavaScript projects.",
+        "longDescription": "Full content of TypeScript blog...",
+        "author": "Charlie Lee",
+        "category": "TypeScript"
+    },
+    {
+        "title": "CSS Grid Layout Guide",
+        "shortDescription": "Master CSS Grid layout with practical examples and tips.",
+        "longDescription": "Full content of CSS Grid blog...",
+        "author": "Dana White",
+        "category": "CSS"
+    },
+    {
+        "title": "Understanding REST APIs",
+        "shortDescription": "Learn how REST APIs work and how to design scalable endpoints.",
+        "longDescription": "Full content of REST APIs blog...",
+        "author": "Evan Brown",
+        "category": "API"
+    },
+    {
+        "title": "GraphQL vs REST",
+        "shortDescription": "Comparing GraphQL and REST for modern web development.",
+        "longDescription": "Full content of GraphQL vs REST blog...",
+        "author": "Fiona Green",
+        "category": "API"
+    },
+    {
+        "title": "State Management in React",
+        "shortDescription": "Overview of different ways to manage state in React applications.",
+        "longDescription": "Full content of State Management blog...",
+        "author": "George Hill",
+        "category": "React"
+    },
+    {
+        "title": "Effective Debugging in JavaScript",
+        "shortDescription": "Tips and tools to debug JavaScript efficiently.",
+        "longDescription": "Full content of Debugging blog...",
+        "author": "Hannah Scott",
+        "category": "JavaScript"
+    },
+    {
+        "title": "Next.js for Beginners",
+        "shortDescription": "Getting started with Next.js for server-side rendering and static sites.",
+        "longDescription": "Full content of Next.js blog...",
+        "author": "Ian Miller",
+        "category": "Next.js"
+    }
+]

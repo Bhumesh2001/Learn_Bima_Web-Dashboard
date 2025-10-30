@@ -67,6 +67,3 @@ body {
 .animate-fadeSlide {
   animation: fadeSlide 0.8s ease-in-out;
 }
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}

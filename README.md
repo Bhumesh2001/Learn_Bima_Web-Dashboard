@@ -1,45 +1,128 @@
-Learn Bima Upskill
-Introduction
-Learn Bima Upskill is a novel digital platform designed to provide unlimited access to insurance licensing courses, hands-on training, and a dedicated recruitment portal. Our mission is to expand the learning horizon and help aspiring individuals plan their careers to become self-reliant and financially independent. We believe that by providing critical market-ready skills, success in the insurance industry is inevitable.
+---
 
-Key Offerings
-Our platform offers a comprehensive suite of services to guide you from initial screening to career placement:
+# 🌐 LearnBima Web
 
-Screening: Every candidate undergoes a psychometric and basic domain knowledge evaluation before enrollment.
+**LearnBima Web** is the public-facing part of the LearnBima platform.
+It’s a responsive educational website designed to help users explore insurance-related blogs, podcasts, and expert insights in an easy and engaging way.
 
-Training: Personalized guidance from highly qualified staff to provide in-depth knowledge of insurance products and processes.
+---
 
-Program: We teach complicated concepts in a clear, jargon-free manner through government-approved insurance licensure and exam preparation courses.
+## 🚀 Features
 
-Job Portal: Access a wide range of opportunities to grow your career, from becoming an insurance professional to a salaried financial advisor in the banking sector.
+- Modern, responsive landing page
+- Blog listing and detailed blog pages
+- Video and podcast gallery
+- Testimonials and expert sections
+- Smooth animations with Framer Motion
+- WhatsApp support button
+- Integrated footer and reusable layout components
 
-Our Vision
-We go beyond careers by offering top-notch digital learning experiences to equip employees with the ability to leverage data-driven knowledge to drive results. Our training includes:
+---
 
-Psychometric Evaluation: An assessment of personality attributes and cognitive capabilities.
+## 🛠 Tech Stack
 
-Selling Strategies: Latest insurance selling strategies to increase sales.
+| Category   | Technology                |
+| ---------- | ------------------------- |
+| Framework  | React.js                  |
+| Styling    | Tailwind CSS              |
+| Animation  | Framer Motion             |
+| Routing    | React Router              |
+| Icons      | React Icons, Lucide React |
+| Deployment | Vercel / Netlify          |
 
-Essentials: Mastering insurance basics to effectively identify and handle needs.
+---
 
-Objection Handling: Preparing in advance for handling sales objections.
+## 📁 Folder Structure
 
-Corporate Basics: Learning about key business trends in the insurance industry.
+```
+learn-bima-web/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── Carousel.jsx
+│   │   ├── Hero.jsx
+│   │   ├── Pattern.jsx
+│   │   ├── Card.jsx
+│   │   ├── Blog.jsx
+│   │   ├── VideoGallary.jsx
+│   │   ├── Feature.jsx
+│   │   ├── AccessLearn.jsx
+│   │   ├── MeetExpert.jsx
+│   │   ├── Testimonial.jsx
+│   │   ├── Footer.jsx
+│   │   └── WhatsAppButton.jsx
+│   ├── pages/
+│   │   └── BlogPage.jsx
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── public/
+├── package.json
+└── README.md
+```
 
-Domain Knowledge: A solid foundation in insurance basics and key concepts.
+---
 
-Our Knowledge Partners
-We are proud to partner with world-class experts who act as our trainers and mentors:
+## ⚙️ Setup Instructions
 
-Dilip Kumar Sharma
+### 1. Clone the repository
 
-Deepak Bhardwaj
+```bash
+git clone https://github.com/yourusername/learnbima-web.git
+cd learnbima-web
+```
 
-Coach Nitin Rishi
+### 2. Install dependencies
 
-Contact Us
-For any inquiries or to learn more about our courses and services, please reach out to us:
+```bash
+npm install
+```
 
-Email: info@learnbima.com
+### 3. Start the development server
 
-Phone: +91 7981563903
+```bash
+npm run dev
+```
+
+Your app will be available at:
+👉 [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 🧩 Routes
+
+| Path    | Description                                                  |
+| ------- | ------------------------------------------------------------ |
+| `/`     | Homepage (Carousel, Hero, Blog, Podcast, Testimonials, etc.) |
+| `/blog` | Blog listing and article details page                        |
+
+---
+
+## 📱 Responsive Design
+
+- Fully responsive using **Tailwind CSS**
+- Optimized for **mobile**, **tablet**, and **desktop** views
+- Clean layout with focus on readability and usability
+
+---
+
+## 💻 Deployment
+
+You can deploy the site easily using:
+
+- **Vercel** → [https://vercel.com/](https://vercel.com/)
+- **Netlify** → [https://www.netlify.com/](https://www.netlify.com/)
+
+Just link your GitHub repository and deploy in one click.
+
+---
+
+## 👨‍💻 Author
+
+**Bhumesh Kewat**
+Software Engineer | Full-Stack Developer
+📧 [bhumesh21@navgurukul.org](mailto:bhumesh21@navgurukul.org)
+🌐 [LinkedIn](https://www.linkedin.com/in/bhumeshkewat)
+
+---
