@@ -1,6 +1,6 @@
 import axios from "axios";
-// const API_BASE_URL = "http://localhost:5000/api"; // local
-const API_BASE_URL = "https://learn-bima-dashboard-backend.onrender.com/api"; // live
+const API_BASE_URL = "http://localhost:5000/api"; // local
+// const API_BASE_URL = "https://learn-bima-dashboard-backend.onrender.com/api"; // live
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -23,6 +23,7 @@ export const getBlogById = (id) => api.get(`/blog/${id}`);
 export const addBlog = (data) => api.post("/blog", data);
 export const updateBlog = (id, data) => api.put(`/blog/${id}`, data);
 export const deleteBlog = (id) => api.delete(`/blog/${id}`);
+export const getBlogCategories = () => api.get(`/blog/categories`);
 
 // ✅ Login/logout
 export const login = (data) => api.post("/admin/login", data);

@@ -1,7 +1,9 @@
 import { Facebook, Linkedin, Instagram, Mail, Phone } from "lucide-react";
 import logo from '../assets/LBlogo.webp';
+import { useNavigate } from 'react-router-dom';
 
 export default function Footer() {
+    const navigate = useNavigate();
     return (
         <footer className="bg-gray-900 text-white pt-10 relative overflow-hidden">
             {/* Wave Shape */}
@@ -26,7 +28,7 @@ export default function Footer() {
                     <img
                         src={logo}
                         alt="LearnBima Logo"
-                        className="w-28 h-28 object-contain"
+                        className="w-28 h-28 object-contain hover:cursor-pointer"
                         draggable={false}
                     />
                     <p className="text-gray-300 font-medium hover:text-white text-center md:text-left">
@@ -35,10 +37,20 @@ export default function Footer() {
 
                     {/* Social Icons */}
                     <div className="flex space-x-4 mt-2">
-                        <a href="#" className="p-3 rounded-full border border-gray-600 hover:border-blue-500 transition-all duration-300">
-                            <Facebook size={20} className="text-gray-300 hover:text-blue-500 transition-colors duration-300" />
+                        <a
+                            href="#"
+                            onClick={() => navigate('/contact')}
+                            className="p-3 rounded-full border border-gray-600 hover:border-blue-500 transition-all duration-300"
+                        >
+                            <Facebook
+                                size={20}
+                                className="text-gray-300 hover:text-blue-500 transition-colors duration-300" />
                         </a>
-                        <a href="#" className="p-3 rounded-full border border-gray-600 hover:border-white transition-all duration-300">
+                        <a
+                            href="#"
+                            onClick={() => navigate('/contact')}
+                            className="p-3 rounded-full border border-gray-600 hover:border-white transition-all duration-300"
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="currentColor"
@@ -48,11 +60,25 @@ export default function Footer() {
                                 <path d="M18.9 2H22l-9.9 11.5L22 22h-3.1l-7.7-8.5L3.5 22H.4l10.7-12.4L.4 2h3.2l7.2 8.1L18.9 2z" />
                             </svg>
                         </a>
-                        <a href="#" className="p-3 rounded-full border border-gray-600 hover:border-blue-600 transition-all duration-300">
-                            <Linkedin size={20} className="text-gray-300 hover:text-blue-600 transition-colors duration-300" />
+                        <a
+                            href="#"
+                            onClick={() => navigate('/contact')}
+                            className="p-3 rounded-full border border-gray-600 hover:border-blue-600 transition-all duration-300"
+                        >
+                            <Linkedin
+                                size={20}
+                                className="text-gray-300 hover:text-blue-600 transition-colors duration-300"
+                            />
                         </a>
-                        <a href="#" className="p-3 rounded-full border border-gray-600 hover:border-pink-500 transition-all duration-300">
-                            <Instagram size={20} className="text-gray-300 hover:text-pink-500 transition-colors duration-300" />
+                        <a
+                            href="#"
+                            onClick={() => navigate('/contact')}
+                            className="p-3 rounded-full border border-gray-600 hover:border-pink-500 transition-all duration-300"
+                        >
+                            <Instagram
+                                size={20}
+                                className="text-gray-300 hover:text-pink-500 transition-colors duration-300"
+                            />
                         </a>
                     </div>
                 </div>
@@ -80,11 +106,56 @@ export default function Footer() {
                 <div className="flex flex-col items-center md:items-start space-y-4">
                     <h3 className="text-xl font-bold text-[#26a5d8] mb-2">Quick Links</h3>
                     <ul className="space-y-2 text-gray-300 font-medium text-center md:text-left">
-                        <li><a href="#" className="hover:text-white transition-colors">Home</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors">Academy</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-                        <li><a href="#" className="hover:text-white transition-colors">Register</a></li>
+                        <li>
+                            <a
+                                href="#"
+                                onClick={() => navigate('/')}
+
+                                className="hover:text-white transition-colors"
+                            >
+                                Home
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                onClick={() => navigate('/')}
+
+                                className="hover:text-white transition-colors"
+                            >
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                onClick={() => navigate('/academy')}
+
+                                className="hover:text-white transition-colors"
+                            >
+                                Academy
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                onClick={() => navigate('/contact')}
+
+                                className="hover:text-white transition-colors"
+                            >
+                                Contact
+                            </a>
+                        </li>
+                        <li>
+                            <a
+                                href="#"
+                                onClick={() => navigate('/')}
+
+                                className="hover:text-white transition-colors"
+                            >
+                                Register
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -100,7 +171,9 @@ export default function Footer() {
                             placeholder="Enter your email"
                             className="flex-1 px-4 py-2 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
-                        <button className="px-6 py-2 bg-[#2b6aa4] rounded-md text-white font-semibold hover:bg-[#186ca2] transition-colors hover:cursor-pointer">
+                        <button
+                            onClick={() => navigate('/contact')}
+                            className="px-6 py-2 bg-[#2b6aa4] rounded-md text-white font-semibold hover:bg-[#186ca2] transition-colors hover:cursor-pointer">
                             Subscribe
                         </button>
                     </div>
@@ -108,7 +181,7 @@ export default function Footer() {
             </div>
 
             {/* Copyright */}
-            <div className="mt-10 border-t border-gray-700 py-4 text-center bg-gradient-to-r from-[#0a75a9]/10 to-[#45b3de]/10 relative z-10">
+            <div className="mt-10 border-t border-gray-700 py-3 text-center bg-gradient-to-r from-[#0a75a9]/10 to-[#45b3de]/10 relative z-10">
                 <p className="text-gray-400 font-medium">&copy; 2025 LearnBima. All rights reserved.</p>
             </div>
         </footer>

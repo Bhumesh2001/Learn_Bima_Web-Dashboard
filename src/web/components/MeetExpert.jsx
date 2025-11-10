@@ -1,7 +1,9 @@
 import React from "react";
 import { Linkedin } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
 export default function MeetExpertsSection() {
+    const navigate = useNavigate();
     const experts = [
         {
             name: "Dilip Kumar Sharma",
@@ -65,8 +67,8 @@ export default function MeetExpertsSection() {
 
                             <div className="mt-4 flex justify-center space-x-4">
                                 <a
-                                    href={expert.linkedin}
-                                    target="_blank"
+                                    href='#'
+                                    onClick={() => navigate('/contact') }
                                     rel="noopener noreferrer"
                                     className="group relative p-3 rounded-full border border-gray-300 hover:border-[#0a75a9] transition-all duration-300"
                                     aria-label="LinkedIn"

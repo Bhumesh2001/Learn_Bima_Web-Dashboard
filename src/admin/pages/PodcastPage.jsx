@@ -23,8 +23,6 @@ export default function PodcastPage() {
     const [page, setPage] = useState(1);
     const [limit] = useState(9);
     const [search, setSearch] = useState("");
-    const [filterDateFrom, setFilterDateFrom] = useState("");
-    const [filterDateTo, setFilterDateTo] = useState("");
     const [editing, setEditing] = useState(null);
     const [showForm, setShowForm] = useState(false);
     const [showDelete, setShowDelete] = useState(false);
@@ -44,8 +42,6 @@ export default function PodcastPage() {
                 page,
                 limit,
                 ...(debouncedSearch && { title: debouncedSearch }),
-                ...(filterDateFrom && { startDate: filterDateFrom }),
-                ...(filterDateTo && { endDate: filterDateTo }),
             };
             const res = await getPodcasts({ params });
             setPodcasts(res.data.data || []);
@@ -56,7 +52,7 @@ export default function PodcastPage() {
         } finally {
             setLoading(false);
         }
-    }, [debouncedSearch, filterDateFrom, filterDateTo, page, limit]);
+    }, [debouncedSearch, page, limit]);
 
     // ✅ Trigger fetch when dependencies change
     useEffect(() => {
@@ -64,7 +60,7 @@ export default function PodcastPage() {
     }, [fetchPodcasts]);
 
     // ✅ Reset page when filters change
-    useEffect(() => setPage(1), [search, filterDateFrom, filterDateTo]);
+    useEffect(() => setPage(1), [search]);
 
     // ✅ Create new podcast
     const create = () => {
@@ -72,6 +68,7 @@ export default function PodcastPage() {
         setShowForm(true);
     };
 
+    // save podcast
     const save = async (data) => {
         try {
             if (data.id) {
@@ -128,10 +125,6 @@ export default function PodcastPage() {
                 onCreate={create}
                 search={search}
                 setSearch={setSearch}
-                filterDateFrom={filterDateFrom}
-                filterDateTo={filterDateTo}
-                setFilterDateFrom={setFilterDateFrom}
-                setFilterDateTo={setFilterDateTo}
             />
 
             {/* Podcast Cards */}

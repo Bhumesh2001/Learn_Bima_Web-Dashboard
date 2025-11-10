@@ -20,7 +20,7 @@ export default function Modal({ children, onClose }) {
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 exit={{ y: 20, opacity: 0 }}
-                className="relative bg-gradient-to-r from-sky-600 to-indigo-600 rounded-lg shadow-xl p-4 max-h-[90vh] overflow-auto"
+                className="relative bg-gradient-to-r from-sky-300 to-indigo-300 rounded-lg shadow-xl p-2 max-h-[90vh] w-[600px] overflow-auto custom-scrollbar"
             >
                 <button
                     onClick={onClose}

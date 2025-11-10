@@ -25,6 +25,9 @@ import HeaderWeb from "./web/components/Header";
 import FooterWeb from "./web/components/Footer";
 import WhatsAppButton from "./web/components/WhatsAppButton";
 import BlogPageWeb from "./web/pages/BlogPage";
+import BlogDetailsPage from "./web/pages/BlogDetailsPage";
+import Academy from "./web/pages/Academy";
+import ContactUs from "./web/pages/ContactUs";
 
 // Admin pages
 import Dashboard from "./admin/pages/Dashboard";
@@ -87,6 +90,9 @@ export default function App() {
           }
         />
         <Route path="/blog" element={<BlogPageWeb />} />
+        <Route path="/blogs/:id" element={<BlogDetailsPage />} />
+        <Route path="/academy" element={<Academy />} />
+        <Route path="/contact" element={<ContactUs />} />
 
         {/* ---------------------- 🧑‍💻 ADMIN ROUTES ---------------------- */}
         <Route path="/admin/login" element={<LoginPage setLoggedIn={setLoggedIn} />} />

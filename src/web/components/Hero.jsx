@@ -1,9 +1,11 @@
 import React from "react";
 import image1 from "../assets/lb1.webp";
+import { useNavigate } from 'react-router-dom';
 
 export default function HeroSection() {
+    const navigate = useNavigate();
     return (
-        <section className="relative bg-gradient-to-b from-[#f0f9ff] to-[#ffffff] text-gray-800 overflow-hidden py-10">
+        <section id="upskill-section" className="relative bg-gradient-to-b from-[#f0f9ff] to-[#ffffff] text-gray-800 overflow-hidden py-10">
             <div className="container mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row items-center justify-between gap-10">
                 {/* Left Content */}
                 <div className="md:w-1/2 text-center md:text-left space-y-6">
@@ -32,7 +34,8 @@ export default function HeroSection() {
                     {/* Call-to-Action Button */}
                     <div className="mt-6">
                         <a
-                            href="#courses"
+                            href="#"
+                            onClick={() => navigate("/contact")}
                             className="inline-block px-8 py-4 bg-gradient-to-r from-[#0a75a9] to-[#45b3de] text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
                         >
                             Explore Courses

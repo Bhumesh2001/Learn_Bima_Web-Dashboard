@@ -24,8 +24,6 @@ export default function BlogPage() {
     const [page, setPage] = useState(1);
     const [limit] = useState(12);
     const [search, setSearch] = useState("");
-    const [filterDateFrom, setFilterDateFrom] = useState("");
-    const [filterDateTo, setFilterDateTo] = useState("");
     const [filterAuthor, setFilterAuthor] = useState("");
     const [filterCategory, setFilterCategory] = useState("");
     const [editing, setEditing] = useState(null);
@@ -48,8 +46,6 @@ export default function BlogPage() {
                 ...(debouncedSearch && { title: debouncedSearch }),
                 ...(filterAuthor && { author: filterAuthor }),
                 ...(filterCategory && { category: filterCategory }),
-                ...(filterDateFrom && { startDate: filterDateFrom }),
-                ...(filterDateTo && { endDate: filterDateTo }),
             };
 
             const res = await getAllBlogs({ params });
@@ -61,7 +57,7 @@ export default function BlogPage() {
         } finally {
             setLoading(false);
         }
-    }, [debouncedSearch, filterAuthor, filterCategory, filterDateFrom, filterDateTo, page, limit]);
+    }, [debouncedSearch, filterAuthor, filterCategory, page, limit]);
 
     // ✅ Fetch when filters, debounced search, or page change
     useEffect(() => {
@@ -78,15 +74,17 @@ export default function BlogPage() {
         [blogs]
     );
 
-    useEffect(() => setPage(1), [search, filterDateFrom, filterDateTo, filterAuthor, filterCategory]);
+    useEffect(() => setPage(1), [search, filterAuthor, filterCategory]);
 
     const totalPages = Math.ceil(Total / limit);
 
+    // create
     const create = () => {
         setEditing({ title: "", shortDescription: "", longDescription: "", author: "", category: "" });
         setShowForm(true);
     };
 
+    // upload blog image
     const uploadAvatarFun = async (data) => {
         if (!data.file) return;
         const formData = new FormData();
@@ -199,20 +197,6 @@ export default function BlogPage() {
                             </option>
                         ))}
                     </select>
-
-                    <input
-                        type="date"
-                        value={filterDateFrom || ""}
-                        onChange={(e) => setFilterDateFrom(e.target.value)}
-                        className="flex-1 min-w-[140px] px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                    />
-
-                    <input
-                        type="date"
-                        value={filterDateTo || ""}
-                        onChange={(e) => setFilterDateTo(e.target.value)}
-                        className="flex-1 min-w-[140px] px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                    />
                 </div>
 
                 <div className="flex justify-end sm:justify-start">

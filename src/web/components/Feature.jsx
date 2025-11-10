@@ -36,7 +36,7 @@ export default function FeaturesSection() {
     ];
 
     return (
-        <section className="py-15 px-6 sm:px-12 bg-gradient-to-b from-[#f0f8ff] to-[#e0f4ff]">
+        <section id="vision-section" className="py-15 px-6 sm:px-12 bg-gradient-to-b from-[#f0f8ff] to-[#e0f4ff]">
             <div className="container mx-auto text-center">
                 <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 text-[#0a75a9]">
                     The <span className="text-[#45b3de] hover:text-black transition-colors">Learn Bima</span> upskill vision goes <span className="text-[#45b3de] hover:text-black transition-colors">beyond</span> careers

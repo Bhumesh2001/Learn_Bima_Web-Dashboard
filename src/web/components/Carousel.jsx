@@ -67,7 +67,14 @@ export default function HeroCarousel() {
                             {slide.description}
                         </p>
                         <a
-                            href={slide.link}
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                const section = document.getElementById("vision-section");
+                                if (section) {
+                                    section.scrollIntoView({ behavior: "smooth" });
+                                }
+                            }}
                             className="mt-2 px-6 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-[#0a75a9] to-[#094e7a] shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                         >
                             Learn More

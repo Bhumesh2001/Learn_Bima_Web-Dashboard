@@ -23,38 +23,53 @@ export default function PodcastForm({ initial = {}, onSave, onSuccess }) {
     };
 
     return (
-        <div className="p-5 w-full bg-white dark:bg-gray-800 rounded-xl shadow-md">
+        <div className="w-full p-6 bg-white dark:bg-gray-800 rounded-xl shadow-md">
             <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">
                 {form.id ? "Edit Podcast" : "Create Podcast"}
             </h3>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
                 {/* Title */}
-                <input
-                    type="text"
-                    value={form.title || ""}
-                    onChange={(e) => setForm({ ...form, title: e.target.value })}
-                    className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100"
-                    placeholder="Title"
-                />
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Title <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        value={form.title || ""}
+                        onChange={(e) => setForm({ ...form, title: e.target.value })}
+                        className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100"
+                        placeholder="Enter podcast title"
+                    />
+                </div>
 
                 {/* Description */}
-                <textarea
-                    value={form.description || ""}
-                    onChange={(e) => setForm({ ...form, description: e.target.value })}
-                    className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100"
-                    rows="4"
-                    placeholder="Description"
-                />
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        Description
+                    </label>
+                    <textarea
+                        value={form.description || ""}
+                        onChange={(e) => setForm({ ...form, description: e.target.value })}
+                        className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100"
+                        rows="4"
+                        placeholder="Enter podcast description"
+                    />
+                </div>
 
                 {/* URL */}
-                <input
-                    type="text"
-                    value={form.url || ""}
-                    onChange={(e) => setForm({ ...form, url: e.target.value })}
-                    className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100"
-                    placeholder="URL"
-                />
+                <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                        URL <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        value={form.url || ""}
+                        onChange={(e) => setForm({ ...form, url: e.target.value })}
+                        className="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-indigo-500 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100"
+                        placeholder="Enter podcast URL"
+                    />
+                </div>
 
                 {/* Save Button */}
                 <div className="flex justify-end pt-2">

@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import logo from '../assets/LBlogo.webp';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Header() {
     const [showHeader, setShowHeader] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
 
     const controlHeader = () => {
         if (typeof window !== "undefined") {
@@ -26,7 +27,18 @@ export default function Header() {
         return () => window.removeEventListener("scroll", controlHeader);
     }, [lastScrollY]);
 
-    const menuItems = ["Home", "About Us", "Team", "Academy", "Contact Us"];
+    useEffect(() => {
+        if (location.state?.scrollTo) {
+            const section = document.getElementById(location.state.scrollTo);
+            if (section) {
+                setTimeout(() => {
+                    section.scrollIntoView({ behavior: "smooth" });
+                }, 200);
+            }
+        }
+    }, [location]);
+
+    const menuItems = ["Home", "About Us", "Academy", "Contact Us"];
 
     return (
         <header
@@ -57,6 +69,19 @@ export default function Header() {
                             onClick={() => {
                                 if (item === "Home") {
                                     navigate("/");
+                                } else if (item === "Academy") {
+                                    navigate('/academy')
+                                } else if (item === "Contact Us") {
+                                    navigate('/contact')
+                                } else if (item === "About Us") {
+                                    if (location.pathname !== "/") {
+                                        navigate("/", { state: { scrollTo: "upskill-section" }, replace: true });
+                                    } else {
+                                        const section = document.getElementById("upskill-section");
+                                        if (section) {
+                                            section.scrollIntoView({ behavior: "smooth" });
+                                        }
+                                    }
                                 }
                             }}
                         >
@@ -67,7 +92,9 @@ export default function Header() {
                 </nav>
 
                 {/* CTA Button */}
-                <button className="hidden md:block px-6 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-[#0a75a9] to-[#094e7a] shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 hover:cursor-pointer">
+                <button
+                    onClick={() => navigate("/contact")}
+                    className="hidden md:block px-6 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-[#0a75a9] to-[#094e7a] shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 hover:cursor-pointer">
                     Register Now
                 </button>
 

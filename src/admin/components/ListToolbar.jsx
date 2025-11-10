@@ -4,10 +4,6 @@ export default function ListToolbar({
     onCreate,
     search,
     setSearch,
-    filterDateFrom,
-    filterDateTo,
-    setFilterDateFrom,
-    setFilterDateTo,
 }) {
     return (
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6 w-full">
@@ -18,18 +14,6 @@ export default function ListToolbar({
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Search by title..."
                     className="flex-1 min-w-[180px] px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                />
-                <input
-                    type="date"
-                    value={filterDateFrom || ""}
-                    onChange={(e) => setFilterDateFrom(e.target.value)}
-                    className="flex-1 min-w-[140px] px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
-                />
-                <input
-                    type="date"
-                    value={filterDateTo || ""}
-                    onChange={(e) => setFilterDateTo(e.target.value)}
-                    className="flex-1 min-w-[140px] px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all"
                 />
             </div>
 

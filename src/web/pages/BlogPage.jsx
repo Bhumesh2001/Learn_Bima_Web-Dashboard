@@ -1,40 +1,54 @@
 import { useState, useEffect } from "react";
-import { Search, Calendar, User, Tag, X } from "lucide-react";
+import { Search, Calendar, User, Tag, Star } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { getAllBlogs, getBlogById } from "../../admin/services/api";
+import { getAllBlogs, getBlogCategories } from "../../admin/services/api";
 
 const BlogPage = () => {
     const [blogs, setBlogs] = useState([]);
     const [search, setSearch] = useState("");
     const [category, setCategory] = useState("");
+    const [categories, setCategories] = useState([]);
     const [author, setAuthor] = useState("");
-    const [date, setDate] = useState("");
-    const [selectedBlog, setSelectedBlog] = useState(null);
     const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [total, setTotal] = useState(0);
     const blogsPerPage = 12;
+    const navigate = useNavigate();
+
+    // ✅ Fetch categories
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const res = await getBlogCategories();
+                if (res.data.success) setCategories(res.data.data);
+            } catch (err) {
+                console.error("Failed to fetch categories:", err);
+            }
+        };
+        fetchCategories();
+    }, []);
 
     // ✅ Fetch blogs with filters
     const fetchBlogs = async () => {
         try {
             setLoading(true);
+            const params = {};
 
-            const params = {
-                title: search || undefined,
-                category: category || undefined,
-                author: author || undefined,
-                startDate: date || undefined,
-                endDate: date || undefined,
-                page: currentPage,
-                limit: blogsPerPage,
-            };
+            if (search.trim()) params.title = search.trim();
+            if (category) params.category = category;
+            if (author.trim()) params.author = author.trim();
+
+            params.page = currentPage;
+            params.limit = blogsPerPage;
 
             const response = await getAllBlogs({ params });
             if (response.data.success) {
                 setBlogs(response.data.data);
                 setTotal(response.data.total);
+            } else {
+                setBlogs([]);
             }
         } catch (err) {
             console.error("Failed to fetch blogs:", err);
@@ -43,24 +57,10 @@ const BlogPage = () => {
         }
     };
 
-    // ✅ Re-fetch blogs when filters or pagination change
     useEffect(() => {
         fetchBlogs();
         window.scrollTo(0, 0);
-    }, [search, category, author, date, currentPage]);
-
-    // ✅ Fetch single blog when modal opens
-    const handleBlogClick = async (id) => {
-        try {
-            setLoading(true);
-            const res = await getBlogById(id);
-            if (res.data.success) setSelectedBlog(res.data.data);
-        } catch (err) {
-            console.error("Error fetching blog details:", err);
-        } finally {
-            setLoading(false);
-        }
-    };
+    }, [search, category, author, currentPage]);
 
     const totalPages = Math.ceil(total / blogsPerPage);
 
@@ -68,10 +68,10 @@ const BlogPage = () => {
         <>
             <Header />
 
-            <section className="pb-15 pt-33 px-6 bg-gradient-to-b from-[#f9fcff] to-[#e6f4ff] min-h-screen">
+            <section className="pb-20 pt-32 px-6 bg-gradient-to-b from-[#f9fcff] to-[#e6f4ff] min-h-screen">
                 <div className="max-w-7xl mx-auto">
                     {/* Header */}
-                    <div className="text-center mb-10">
+                    <div className="text-center mb-8">
                         <h2 className="text-4xl sm:text-5xl font-extrabold text-[#0a75a9] mb-3">
                             📚 LearnBima Blog Hub
                         </h2>
@@ -81,7 +81,7 @@ const BlogPage = () => {
                     </div>
 
                     {/* Filters */}
-                    <div className="flex flex-wrap gap-4 justify-center mb-10">
+                    <div className="flex flex-wrap gap-4 justify-center mb-8">
                         <div className="relative">
                             <Search className="absolute left-3 top-3 text-gray-400" size={18} />
                             <input
@@ -99,9 +99,11 @@ const BlogPage = () => {
                             className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#0a75a9]"
                         >
                             <option value="">All Categories</option>
-                            <option value="Finance">Finance</option>
-                            <option value="Health">Health</option>
-                            <option value="Insurance">Insurance</option>
+                            {categories.map((cat, index) => (
+                                <option key={index} value={cat}>
+                                    {cat}
+                                </option>
+                            ))}
                         </select>
 
                         <input
@@ -109,13 +111,6 @@ const BlogPage = () => {
                             placeholder="Author"
                             value={author}
                             onChange={(e) => setAuthor(e.target.value)}
-                            className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#0a75a9]"
-                        />
-
-                        <input
-                            type="date"
-                            value={date}
-                            onChange={(e) => setDate(e.target.value)}
                             className="px-3 py-2 rounded-xl border border-gray-300 focus:ring-2 focus:ring-[#0a75a9]"
                         />
                     </div>
@@ -130,26 +125,46 @@ const BlogPage = () => {
                             {blogs.map((blog) => (
                                 <div
                                     key={blog.id}
-                                    onClick={() => handleBlogClick(blog.id)}
+                                    onClick={() => navigate(`/blogs/${blog.id}`)}
                                     className="group relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 cursor-pointer overflow-hidden"
                                 >
-                                    <img
-                                        src={blog.imageUrl}
-                                        alt={blog.title}
-                                        draggable={false}
-                                        className="w-full h-48 object-cover rounded-2xl relative z-10"
-                                    />
-                                    <div className="p-5 flex flex-col justify-between h-[220px] relative z-10">
+                                    {/* Image + Batch Label */}
+                                    <div className="relative">
+                                        <img
+                                            src={blog.imageUrl}
+                                            alt={blog.title}
+                                            draggable={false}
+                                            className="w-full h-48 object-cover rounded-t-2xl"
+                                        />
+
+                                        {/* ✅ Show “Latest Batch” if applicable */}
+                                        {blog.latestBatch && (
+                                            <span className="absolute top-3 left-3 flex items-center gap-1 bg-gradient-to-r from-[#0a75a9] to-[#094e7a] text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+                                                <Star size={12} className="fill-yellow-400 text-yellow-400" />
+                                                Latest
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    {/* blog info */}
+                                    <div className="p-5 flex flex-col justify-between h-[220px]">
                                         <h3 className="text-xl font-bold text-[#0a75a9] mb-2 line-clamp-2">
                                             {blog.title}
                                         </h3>
-                                        <p className="text-gray-600 text-sm line-clamp-3">{blog.shortDescription}</p>
+                                        <p className="text-gray-600 text-sm line-clamp-2">
+                                            {blog.shortDescription}
+                                        </p>
                                         <div className="mt-3 flex items-center justify-between text-gray-500 text-sm">
                                             <span className="flex items-center gap-1">
                                                 <User size={16} /> {blog.author}
                                             </span>
                                             <span className="flex items-center gap-1">
-                                                <Calendar size={16} /> {blog.date}
+                                                <Calendar size={16} />{" "}
+                                                {new Date(blog.createdAt).toLocaleDateString("en-IN", {
+                                                    year: "numeric",
+                                                    month: "long",
+                                                    day: "numeric",
+                                                })}
                                             </span>
                                         </div>
                                         <div className="mt-1 flex items-center gap-1 text-[#0a75a9] text-sm font-medium">
@@ -163,6 +178,17 @@ const BlogPage = () => {
 
                     {/* Pagination */}
                     <div className="flex justify-center mt-10 space-x-2">
+                        <button
+                            disabled={currentPage === 1}
+                            onClick={() => setCurrentPage((p) => p - 1)}
+                            className={`px-4 py-2 rounded-lg border text-sm font-medium transition-all ${currentPage === 1
+                                ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                                : "bg-white text-gray-700 hover:bg-[#eaf6ff]"
+                                }`}
+                        >
+                            Prev
+                        </button>
+
                         {Array.from({ length: totalPages }, (_, i) => (
                             <button
                                 key={i}
@@ -175,46 +201,19 @@ const BlogPage = () => {
                                 {i + 1}
                             </button>
                         ))}
+
+                        <button
+                            disabled={currentPage === totalPages}
+                            onClick={() => setCurrentPage((p) => p + 1)}
+                            className={`px-4 py-2 rounded-lg border text-sm font-medium transition-all ${currentPage === totalPages
+                                ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+                                : "bg-white text-gray-700 hover:bg-[#eaf6ff]"
+                                }`}
+                        >
+                            Next
+                        </button>
                     </div>
                 </div>
-
-                {/* Blog Modal */}
-                {selectedBlog && (
-                    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
-                        <div className="bg-white rounded-2xl max-w-2xl w-full p-6 relative max-h-[90vh] overflow-y-auto">
-                            <button
-                                onClick={() => setSelectedBlog(null)}
-                                className="absolute top-2 right-2 text-gray-500 hover:text-[#0a75a9]"
-                            >
-                                <X size={24} />
-                            </button>
-
-                            <img
-                                src={selectedBlog.imageUrl}
-                                alt={selectedBlog.title}
-                                draggable={false}
-                                className="w-full h-56 object-cover rounded-xl mb-5"
-                            />
-                            <h2 className="text-2xl font-bold text-[#0a75a9] mb-2">
-                                {selectedBlog.title}
-                            </h2>
-                            <div className="flex flex-wrap items-center gap-3 text-gray-500 text-sm mb-4">
-                                <span className="flex items-center gap-1">
-                                    <User size={16} /> {selectedBlog.author}
-                                </span>
-                                <span className="flex items-center gap-1">
-                                    <Calendar size={16} /> {selectedBlog.date}
-                                </span>
-                                <span className="flex items-center gap-1 text-[#0a75a9] font-medium">
-                                    <Tag size={16} /> {selectedBlog.category}
-                                </span>
-                            </div>
-                            <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                                {selectedBlog.longDescription}
-                            </p>
-                        </div>
-                    </div>
-                )}
             </section>
 
             <Footer />

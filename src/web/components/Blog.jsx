@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Calendar, User } from "lucide-react";
+import { Calendar, User, Star, Tag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { getAllBlogs } from "../../admin/services/api";
 
@@ -55,7 +55,9 @@ export default function BlogSection() {
                             <div
                                 key={i}
                                 className="group bg-white rounded-2xl shadow-xl overflow-hidden border border-white/30 hover:shadow-2xl transition-all duration-500 hover:-translate-y-1 cursor-pointer"
+                                onClick={() => navigate(`/blogs/${blog.id}`)}
                             >
+                                {/* Image + Latest Badge */}
                                 <div className="relative overflow-hidden">
                                     <img
                                         src={blog.imageUrl || "https://via.placeholder.com/400x250"}
@@ -63,38 +65,51 @@ export default function BlogSection() {
                                         draggable={false}
                                         className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-110"
                                     />
-                                    {blog.category && (
-                                        <span className="absolute top-4 left-4 bg-gradient-to-r from-[#0a75a9] to-[#45b3de] text-white text-sm font-semibold px-3 py-1 rounded-full shadow-md">
-                                            {blog.category}
+
+                                    {/* ✅ Latest Badge */}
+                                    {blog.latestBatch && (
+                                        <span className="absolute top-4 left-4 flex items-center gap-1 bg-gradient-to-r from-[#0a75a9] to-[#45b3de] text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+                                            <Star size={12} className="fill-yellow-400 text-yellow-400" />
+                                            Latest
                                         </span>
                                     )}
                                 </div>
 
-                                <div className="p-6 flex flex-col justify-between h-[220px]">
+                                {/* Content */}
+                                <div className="p-6 flex flex-col justify-between h-[230px]">
                                     <div>
                                         <h3 className="text-xl font-bold text-[#0a75a9] mb-2 line-clamp-2">
                                             {blog.title}
                                         </h3>
-                                        <p className="text-gray-600 text-sm line-clamp-3">
+                                        <p className="text-gray-600 text-sm line-clamp-2">
                                             {blog.shortDescription || "No Description"}
                                         </p>
                                     </div>
 
-                                    <div className="mt-4 flex items-center justify-between text-gray-500 text-sm">
-                                        <div className="flex items-center space-x-2">
-                                            <User size={16} className="text-[#0a75a9]" />
-                                            <span>{blog.author || "Admin"}</span>
+                                    <div className="mt-4 flex flex-col gap-2 text-gray-500 text-sm">
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center space-x-2">
+                                                <User size={16} className="text-[#0a75a9]" />
+                                                <span>{blog.author || "Admin"}</span>
+                                            </div>
+                                            <div className="flex items-center space-x-2">
+                                                <Calendar size={16} className="text-[#0a75a9]" />
+                                                <span>
+                                                    {new Date(blog.createdAt).toLocaleDateString("en-US", {
+                                                        month: "short",
+                                                        day: "numeric",
+                                                        year: "numeric",
+                                                    })}
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className="flex items-center space-x-2">
-                                            <Calendar size={16} className="text-[#0a75a9]" />
-                                            <span>
-                                                {new Date(blog.createdAt).toLocaleDateString("en-US", {
-                                                    month: "short",
-                                                    day: "numeric",
-                                                    year: "numeric",
-                                                })}
-                                            </span>
-                                        </div>
+
+                                        {/* ✅ Category below author/date */}
+                                        {blog.category && (
+                                            <div className="flex items-center gap-1 text-[#0a75a9] font-medium">
+                                                <Tag size={14} /> {blog.category}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
