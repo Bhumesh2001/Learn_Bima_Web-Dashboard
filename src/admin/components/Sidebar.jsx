@@ -18,7 +18,7 @@ export default function Sidebar({ collapsed }) {
             className={`fixed left-0 top-[${headerHeight}px] z-40 h-[calc(100vh-${headerHeight}px)] 
         transition-all duration-500 ease-in-out 
         ${collapsed ? "w-0 opacity-0" : "w-64 opacity-100"} 
-        bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 border-r shadow-lg overflow-hidden`}
+        bg-linear-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800 border-r shadow-lg overflow-hidden`}
         >
             <div className="flex flex-col h-full pt-6">
                 {/* Navigation Links */}
@@ -30,7 +30,7 @@ export default function Sidebar({ collapsed }) {
                             draggable={false}
                             className={({ isActive }) =>
                                 `w-full flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-300 text-sm group
-    ${isActive
+                            ${isActive
                                     ? "bg-indigo-600 text-white shadow-md"
                                     : "text-gray-700 dark:text-gray-300 hover:bg-indigo-50 dark:hover:bg-gray-700 hover:text-indigo-600 dark:hover:text-indigo-400"}`
                             }
@@ -40,7 +40,7 @@ export default function Sidebar({ collapsed }) {
                                     <div
                                         draggable={false}
                                         className={`flex items-center justify-center w-8 h-8 rounded-md transition-all duration-300
-          ${isActive
+                                            ${isActive
                                                 ? "bg-indigo-500 text-white"
                                                 : "bg-gray-100 dark:bg-gray-700 group-hover:bg-indigo-100 dark:group-hover:bg-gray-600"
                                             }`}

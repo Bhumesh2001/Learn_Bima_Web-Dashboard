@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { AnimatePresence, motion } from "framer-motion";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "quill/dist/quill.snow.css";
 
 import Header from "./admin/components/Header";
 import Sidebar from "./admin/components/Sidebar";

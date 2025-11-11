@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Upload, Image as ImageIcon, Plus } from "lucide-react";
 import { useQuill } from "react-quilljs";
-import "quill/dist/quill.snow.css";
 import { getBlogCategories } from "../services/api";
 
 export default function BlogForm({ initial = {}, onSave, loading }) {

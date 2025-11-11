@@ -7,4 +7,12 @@ export default defineConfig({
     react(),
     tailwindcss()
   ],
+  optimizeDeps: {
+    include: [],
+  },
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+  },
 })

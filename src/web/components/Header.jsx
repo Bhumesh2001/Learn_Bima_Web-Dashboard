@@ -48,7 +48,7 @@ export default function Header() {
             <div className="max-w-7xl mx-auto px-5 sm:px-10 flex items-center justify-between py-3">
                 {/* Logo */}
                 <div className="flex items-center space-x-3">
-                    <div className="w-18 h-18 sm:w-20 sm:h-20 flex-shrink-0">
+                    <div className="w-18 h-18 sm:w-20 sm:h-20 shrink-0">
                         <img
                             src={logo}
                             alt="LearnBima Logo"
@@ -86,7 +86,7 @@ export default function Header() {
                             }}
                         >
                             {item}
-                            <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-[#0a75a9] group-hover:w-full transition-all duration-300"></span>
+                            <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-[#0a75a9] group-hover:w-full transition-all duration-300"></span>
                         </a>
                     ))}
                 </nav>
@@ -94,7 +94,7 @@ export default function Header() {
                 {/* CTA Button */}
                 <button
                     onClick={() => navigate("/contact")}
-                    className="hidden md:block px-6 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-[#0a75a9] to-[#094e7a] shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 hover:cursor-pointer">
+                    className="hidden md:block px-6 py-2 rounded-full text-white font-semibold bg-linear-to-r from-[#0a75a9] to-[#094e7a] shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 hover:cursor-pointer">
                     Register Now
                 </button>
 
@@ -141,7 +141,7 @@ export default function Header() {
 
                     <button
                         onClick={() => setIsOpen(false)}
-                        className="px-4 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-[#0a75a9] to-[#094e7a] shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                        className="px-4 py-2 rounded-full text-white font-semibold bg-linear-to-r from-[#0a75a9] to-[#094e7a] shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                     >
                         Register Now
                     </button>
