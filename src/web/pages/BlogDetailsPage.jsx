@@ -31,7 +31,7 @@ const BlogDetailsPage = () => {
             <Header />
 
             {loading ? (
-                <div className="min-h-screen flex items-center justify-center bg-black/90">
+                <div className="min-h-screen flex items-center justify-center">
                     <Loader text="Loading blog details..." />
                 </div>
             ) : !blog ? (

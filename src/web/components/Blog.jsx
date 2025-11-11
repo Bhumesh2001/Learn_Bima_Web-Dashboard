@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Calendar, User, Star, Tag } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { getAllBlogs } from "../../admin/services/api";
+import Loader from "../components/ui/Loader";
 
 export default function BlogSection() {
     const navigate = useNavigate();
@@ -30,10 +31,10 @@ export default function BlogSection() {
     if (loading) {
         return (
             <div className="flex justify-center items-center py-20">
-                <p className="text-[#0a75a9] text-lg font-semibold">Loading blogs...</p>
+                <Loader text="Loading blogs..." />
             </div>
         );
-    };
+    }
 
     return (
         <section className="py-15 bg-linear-to-b from-[#eaf6ff] to-[#d6efff]">
