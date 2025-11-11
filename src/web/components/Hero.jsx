@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 export default function HeroSection() {
     const navigate = useNavigate();
     return (
-        <section id="upskill-section" className="relative bg-gradient-to-b from-[#f0f9ff] to-[#ffffff] text-gray-800 overflow-hidden py-10">
+        <section id="upskill-section" className="relative bg-linear-to-b from-[#f0f9ff] to-[#ffffff] text-gray-800 overflow-hidden py-10">
             <div className="container mx-auto px-6 md:px-12 flex flex-col-reverse md:flex-row items-center justify-between gap-10">
                 {/* Left Content */}
                 <div className="md:w-1/2 text-center md:text-left space-y-6">
                     {/* Main Heading */}
-                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-transparent bg-clip-text bg-gradient-to-r from-[#0a75a9] to-[#45b3de] tracking-tight">
+                    <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold leading-tight text-transparent bg-clip-text bg-linear-to-r from-[#0a75a9] to-[#45b3de] tracking-tight">
                         Learn Bima UpSkill
                     </h1>
 
@@ -36,7 +36,7 @@ export default function HeroSection() {
                         <a
                             href="#"
                             onClick={() => navigate("/contact")}
-                            className="inline-block px-8 py-4 bg-gradient-to-r from-[#0a75a9] to-[#45b3de] text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
+                            className="inline-block px-8 py-4 bg-linear-to-r from-[#0a75a9] to-[#45b3de] text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
                         >
                             Explore Courses
                         </a>
@@ -52,7 +52,7 @@ export default function HeroSection() {
                     <img
                         src={image1}
                         alt="Illustration"
-                        className="relative z-10 w-[90%] sm:w-[28rem] md:w-[34rem] lg:w-[40rem] object-contain drop-shadow-2xl rounded-2xl animate-float"
+                        className="relative z-10 w-[90%] sm:w-md md:w-136 lg:w-160 object-contain drop-shadow-2xl rounded-2xl animate-float"
                         draggable={false}
                     />
                 </div>
