@@ -32,7 +32,7 @@ const BlogDetailsPage = () => {
         <>
             <Header />
 
-            <section className="min-h-screen pt-32 pb-20 px-6 bg-gradient-to-b from-[#f9fcff] to-[#e6f4ff]">
+            <section className="min-h-screen pt-32 pb-20 px-6 bg-linear-to-b from-[#f9fcff] to-[#e6f4ff]">
                 <div className="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-md">
                     <button
                         onClick={() => navigate(-1)}
@@ -51,7 +51,7 @@ const BlogDetailsPage = () => {
 
                         {/* ✅ Latest Batch tag */}
                         {blog.latestBatch && (
-                            <span className="absolute top-3 left-3 flex items-center gap-1 bg-gradient-to-r from-[#0a75a9] to-[#094e7a] text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+                            <span className="absolute top-3 left-3 flex items-center gap-1 bg-linear-to-r from-[#0a75a9] to-[#094e7a] text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
                                 <Star size={12} className="fill-yellow-400 text-yellow-400" />
                                 Latest
                             </span>
@@ -63,7 +63,13 @@ const BlogDetailsPage = () => {
 
                     {/* ✅ Short Description */}
                     {blog.shortDescription && (
-                        <p className="text-gray-600 text-lg mb-4 leading-relaxed">{blog.shortDescription}</p>
+                        <p className="text-gray-600 text-lg mb-4 leading-relaxed"
+                            dangerouslySetInnerHTML={{
+                                __html:
+                                    blog.shortDescription ||
+                                    "No short description available.",
+                            }}>
+                        </p>
                     )}
 
                     {/* long description */}
@@ -83,8 +89,12 @@ const BlogDetailsPage = () => {
                             <Tag size={16} /> {blog.category}
                         </span>
                     </div>
-                    <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                        {blog.longDescription}
+                    <p className="text-gray-700 leading-relaxed whitespace-pre-line"
+                        dangerouslySetInnerHTML={{
+                            __html:
+                                blog.longDescription ||
+                                "No long description available.",
+                        }}>
                     </p>
                 </div>
             </section>

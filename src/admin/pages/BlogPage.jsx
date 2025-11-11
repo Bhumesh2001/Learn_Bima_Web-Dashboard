@@ -4,7 +4,7 @@ import Pagination from "../components/Pagination";
 import { motion, AnimatePresence } from "framer-motion";
 import Modal from "../components/Modal";
 import BlogForm from "../components/BlogForm";
-import { Edit3, Trash2 } from "lucide-react";
+import { Edit3, Trash2, Eye } from "lucide-react";
 import DeleteModal from "../components/DeleteModal";
 import Loader from "../components/Loader";
 import {
@@ -17,6 +17,7 @@ import {
 import { notify } from "../utils/notify";
 import { getErrorMessage } from "../utils/helper";
 import useDebounce from '../hooks//UseDebounce';
+import BlogPreviewModal from "../components/BlogPreviewModal";
 
 export default function BlogPage() {
     const [blogs, setBlogs] = useState([]);
@@ -32,6 +33,8 @@ export default function BlogPage() {
     const [selectedId, setSelectedId] = useState(null);
     const [formLoading, setFormLoading] = useState(false);
     const [Total, setTotal] = useState(0);
+    const [showPreview, setShowPreview] = useState(false);
+    const [previewBlog, setPreviewBlog] = useState(null);
 
     // ✅ Debounced value for search
     const debouncedSearch = useDebounce(search, 500);
@@ -49,7 +52,7 @@ export default function BlogPage() {
             };
 
             const res = await getAllBlogs({ params });
-            setBlogs(res.data.data || []);            
+            setBlogs(res.data.data || []);
             setTotal(res.data.total || 0);
         } catch (err) {
             console.error("Failed to fetch blogs:", err);
@@ -240,22 +243,37 @@ export default function BlogPage() {
                             </div>
 
                             <div className="flex justify-end gap-3 mt-4">
+                                {/* Edit Button */}
                                 <button
                                     onClick={() => {
                                         setEditing(b);
                                         setShowForm(true);
                                     }}
-                                    className="p-2 bg-yellow-500 hover:bg-yellow-600 text-white rounded-lg transition hover:cursor-pointer"
+                                    className="p-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition hover:cursor-pointer shadow-sm"
                                     title="Edit"
                                 >
                                     <Edit3 size={18} />
                                 </button>
+
+                                {/* View Button */}
+                                <button
+                                    onClick={() => {
+                                        setPreviewBlog(b);
+                                        setShowPreview(true);
+                                    }}
+                                    className="p-2 bg-sky-600 hover:bg-sky-700 text-white rounded-lg transition hover:cursor-pointer shadow-sm"
+                                    title="View Blog"
+                                >
+                                    <Eye size={18} />
+                                </button>
+
+                                {/* Delete Button */}
                                 <button
                                     onClick={() => {
                                         setSelectedId(b.id);
                                         setShowDelete(true);
                                     }}
-                                    className="p-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition hover:cursor-pointer"
+                                    className="p-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg transition hover:cursor-pointer shadow-sm"
                                     title="Delete"
                                 >
                                     <Trash2 size={18} />
@@ -311,6 +329,13 @@ export default function BlogPage() {
                     </Modal>
                 )}
             </AnimatePresence>
+
+            {/* blog preview modal */}
+            <BlogPreviewModal
+                open={showPreview}
+                onClose={() => setShowPreview(false)}
+                blog={previewBlog}
+            />
         </motion.div>
     );
 };

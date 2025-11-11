@@ -105,9 +105,9 @@ export default function App() {
                   <Header onToggleSidebar={() => setCollapsed(!collapsed)} admin={profile} />
                 </header>
 
-                <main className="flex flex-1 pt-[64px]">
+                <main className="flex flex-1 pt-16">
                   <aside
-                    className={`bg-white dark:bg-gray-800 shadow-md border-r fixed md:static top-[64px] left-0 h-[calc(100vh-64px)] transition-all duration-300 z-30
+                    className={`bg-white dark:bg-gray-800 shadow-md border-r fixed md:static top-16 left-0 h-[calc(100vh-64px)] transition-all duration-300 z-30
                       ${collapsed ? "-ml-64" : "w-64 hidden lg:flex flex-col"}`}
                   >
                     <Sidebar collapsed={collapsed} />

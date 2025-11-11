@@ -9,13 +9,13 @@ export default function AccessLearningSection() {
     ];
 
     return (
-        <section className="py-15 px-5 sm:px-10 md:px-20 bg-gradient-to-b from-[#f5f9ff] to-[#e0f4ff]">
+        <section className="py-15 px-5 sm:px-10 md:px-20 bg-linear-to-b from-[#f5f9ff] to-[#e0f4ff]">
             <div className="container mx-auto flex flex-col items-center gap-10">
                 {/* Top: Image + Text */}
                 <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-10">
                     {/* Image */}
                     <div className="w-full lg:w-1/2 relative h-80 sm:h-96 flex justify-center">
-                        <div className="absolute -inset-5 bg-gradient-to-tr from-[#0a75a9]/20 via-[#45b3de]/20 to-[#0a75a9]/20 rounded-2xl blur-3xl animate-animateGradient"></div>
+                        <div className="absolute -inset-5 bg-linear-to-tr from-[#0a75a9]/20 via-[#45b3de]/20 to-[#0a75a9]/20 rounded-2xl blur-3xl animate-animateGradient"></div>
                         <img
                             src={team}
                             alt="Three people collaborating"
@@ -41,7 +41,7 @@ export default function AccessLearningSection() {
                             key={idx}
                             className="p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transform hover:-translate-y-1 text-center flex flex-col items-center gap-2 transition-all duration-500"
                         >
-                            <div className={`text-3xl sm:text-4xl md:text-5xl font-extrabold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
+                            <div className={`text-3xl sm:text-4xl md:text-5xl font-extrabold bg-linear-to-r ${stat.gradient} bg-clip-text text-transparent`}>
                                 {stat.value}
                             </div>
                             <p className="text-gray-700 font-semibold text-sm sm:text-base">{stat.label}</p>

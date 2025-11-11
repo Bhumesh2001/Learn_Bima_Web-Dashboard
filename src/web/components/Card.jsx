@@ -26,7 +26,7 @@ export default function FourCardSection() {
     ];
 
     return (
-        <section className="py-15 px-6 sm:px-12 bg-gradient-to-b from-[#f5faff] to-[#e0f0ff]">
+        <section className="py-15 px-6 sm:px-12 bg-linear-to-b from-[#f5faff] to-[#e0f0ff]">
             <div className="container mx-auto text-center">
                 <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 text-[#0a75a9]">
                     DREAM BIG! ACT NOW!
@@ -46,8 +46,8 @@ export default function FourCardSection() {
                         >
                             {/* Icon with gradient hover */}
                             <div className="relative mb-5 w-20 h-20 flex items-center justify-center">
-                                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#0a75a9]/40 via-[#45b3de]/30 to-[#094e7a]/40 blur-xl opacity-70 transition-all duration-500 group-hover:scale-110"></div>
-                                <div className="relative z-10 p-5 rounded-full bg-gradient-to-r from-[#0a75a9] to-[#094e7a] text-white flex items-center justify-center group-hover:from-[#45b3de] group-hover:to-[#0a75a9] transition-all duration-500">
+                                <div className="absolute inset-0 rounded-full bg-linear-to-tr from-[#0a75a9]/40 via-[#45b3de]/30 to-[#094e7a]/40 blur-xl opacity-70 transition-all duration-500 group-hover:scale-110"></div>
+                                <div className="relative z-10 p-5 rounded-full bg-linear-to-r from-[#0a75a9] to-[#094e7a] text-white flex items-center justify-center group-hover:from-[#45b3de] group-hover:to-[#0a75a9] transition-all duration-500">
                                     <item.icon size={40} />
                                 </div>
                             </div>
@@ -61,7 +61,7 @@ export default function FourCardSection() {
                             <p className="text-gray-700 text-base leading-relaxed">{item.desc}</p>
 
                             {/* Decorative Glow Shape */}
-                            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-16 bg-gradient-to-r from-[#0a75a9]/20 via-[#45b3de]/20 to-[#094e7a]/20 rounded-full blur-3xl opacity-50 z-0"></div>
+                            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-16 bg-linear-to-r from-[#0a75a9]/20 via-[#45b3de]/20 to-[#094e7a]/20 rounded-full blur-3xl opacity-50 z-0"></div>
                         </div>
                     ))}
                 </div>

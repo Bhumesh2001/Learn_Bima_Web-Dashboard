@@ -1,25 +1,39 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Upload, Image as ImageIcon } from "lucide-react";
+import { Upload, Image as ImageIcon, Plus } from "lucide-react";
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
+import { getBlogCategories } from "../services/api";
 
 export default function BlogForm({ initial = {}, onSave, loading }) {
     const [form, setForm] = useState(initial);
     const [preview, setPreview] = useState(initial.imageUrl || "");
+    const [categories, setCategories] = useState([]);
+    const [newCategory, setNewCategory] = useState("");
+    const [showNewCategoryInput, setShowNewCategoryInput] = useState(false);
     const fileInputRef = useRef(null);
+
+    // ✅ Shared toolbar options
+    const modules = {
+        toolbar: [
+            ["bold", "italic", "underline", "strike"],
+            [{ list: "ordered" }, { list: "bullet" }],
+            [{ align: [] }],
+            ["link", "image"],
+            ["clean"],
+        ],
+    };
 
     const { quill, quillRef } = useQuill({
         theme: "snow",
-        modules: {
-            toolbar: [
-                [{ header: [1, 2, false] }],
-                ["bold", "italic", "underline", "strike"],
-                [{ list: "ordered" }, { list: "bullet" }],
-                ["link", "image"],
-                ["clean"],
-            ],
-        },
+        modules,
         placeholder: "Write content...",
+    });
+
+    // ✅ Short Description Editor (Minimal Toolbar)
+    const { quill: shortQuill, quillRef: shortQuillRef } = useQuill({
+        theme: "snow",
+        modules,
+        placeholder: "Write a short summary (1–2 lines)...",
     });
 
     useEffect(() => {
@@ -38,6 +52,34 @@ export default function BlogForm({ initial = {}, onSave, loading }) {
             });
         }
     }, [quill]);
+
+    // ✅ Sync Short Description
+    useEffect(() => {
+        if (shortQuill) {
+            shortQuill.root.innerHTML = form.shortDescription || "";
+            shortQuill.on("text-change", () => {
+                setForm((prev) => ({
+                    ...prev,
+                    shortDescription: shortQuill.root.innerHTML,
+                }));
+            });
+        }
+    }, [shortQuill, setForm]);
+
+    // ✅ Load categories from API
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const res = await getBlogCategories();
+                setCategories(res?.data?.data || []);
+            } catch (err) {
+                console.error("Error fetching blog categories:", err.message);
+                setCategories([]);
+            }
+        };
+
+        fetchCategories();
+    }, []);
 
     const handleImageChange = (e) => {
         const file = e.target.files?.[0];
@@ -79,6 +121,7 @@ export default function BlogForm({ initial = {}, onSave, loading }) {
 
                 {/* Author & Category */}
                 <div className="grid sm:grid-cols-2 gap-3">
+                    {/* author */}
                     <div>
                         <label className="block text-gray-700 dark:text-gray-300 mb-1 font-medium">
                             Author
@@ -91,16 +134,53 @@ export default function BlogForm({ initial = {}, onSave, loading }) {
                         />
                     </div>
 
+                    {/* ✅ Category Dropdown with Create Option */}
                     <div>
                         <label className="block text-gray-700 dark:text-gray-300 mb-1 font-medium">
                             Category
                         </label>
-                        <input
-                            value={form.category || ""}
-                            onChange={(e) => setForm({ ...form, category: e.target.value })}
-                            className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white"
-                            placeholder="Enter category"
-                        />
+                        <div className="flex gap-2">
+                            <select
+                                value={form.category || ""}
+                                onChange={(e) => setForm({ ...form, category: e.target.value })}
+                                className="flex-1 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white"
+                            >
+                                <option value="">Select Category</option>
+                                {categories.map((cat, index) => (
+                                    <option key={index} value={cat}>
+                                        {cat}
+                                    </option>
+                                ))}
+                            </select>
+
+                            {/* ✅ Hide Add button while editing */}
+                            {!form.id && (
+                                <button
+                                    onClick={() => setShowNewCategoryInput(!showNewCategoryInput)}
+                                    className="p-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition hover:cursor-pointer"
+                                    type="button"
+                                >
+                                    <Plus size={18} />
+                                </button>
+                            )}
+                        </div>
+
+                        {showNewCategoryInput && !form.id && (
+                            <div className="mt-2 flex gap-2">
+                                <input
+                                    type="text"
+                                    value={newCategory}
+                                    onChange={(e) => setNewCategory(e.target.value)}
+                                    className="flex-1 px-3 py-2 border rounded-lg focus:ring-2 focus:ring-green-500 dark:bg-gray-800 dark:text-white"
+                                    placeholder="Enter new category name"
+                                />
+                                <button
+                                    className="px-2 py-1 hover:cursor-pointer bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition text-sm"
+                                >
+                                    Add
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
 
@@ -109,12 +189,10 @@ export default function BlogForm({ initial = {}, onSave, loading }) {
                     <label className="block text-gray-700 dark:text-gray-300 mb-1 font-medium">
                         Short Description
                     </label>
-                    <textarea
-                        value={form.shortDescription || ""}
-                        onChange={(e) => setForm({ ...form, shortDescription: e.target.value })}
-                        className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-500 dark:bg-gray-800 dark:text-white"
-                        placeholder="Write a short summary (1–2 lines)"
-                        rows={2}
+                    <div
+                        ref={shortQuillRef}
+                        className="bg-white dark:bg-gray-800 dark:text-white border rounded-lg"
+                        style={{ minHeight: "150px" }}
                     />
                 </div>
 
@@ -149,7 +227,7 @@ export default function BlogForm({ initial = {}, onSave, loading }) {
                     <div className="flex flex-col sm:flex-row gap-3 mt-3">
                         <button
                             onClick={() => fileInputRef.current.click()}
-                            className="flex items-center justify-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition"
+                            className="flex items-center justify-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition hover:cursor-pointer"
                         >
                             <Upload className="mr-2 w-4 h-4" /> Upload Image
                         </button>
@@ -180,12 +258,12 @@ export default function BlogForm({ initial = {}, onSave, loading }) {
                     <button
                         onClick={handleSave}
                         disabled={loading}
-                        className={`px-6 py-2 rounded-lg text-white flex items-center gap-2 ${loading
-                                ? "bg-indigo-400 cursor-not-allowed"
-                                : "bg-indigo-600 hover:bg-indigo-700"
+                        className={`px-6 py-2 hover:cursor-pointer rounded-lg text-white flex items-center gap-2 ${loading
+                            ? "bg-indigo-400 cursor-not-allowed"
+                            : "bg-indigo-600 hover:bg-indigo-700"
                             }`}
                     >
-                        {loading ? "Saving..." : "Save Blog"}
+                        {loading ? "Saving..." : "Save"}
                     </button>
                 </div>
             </div>

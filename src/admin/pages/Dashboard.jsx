@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { formatDate } from "../utils/helper";
-import { getPodcasts, getAllBlogs } from "../services/api";
+import { getPodcasts, getAllBlogs, getDashboardStats } from "../services/api";
 import Loader from "../components/Loader";
 import { notify } from "../utils/notify";
 import { getErrorMessage } from "../utils/helper";
@@ -9,25 +9,21 @@ import { getErrorMessage } from "../utils/helper";
 export default function Dashboard() {
     const [podcasts, setPodcasts] = useState([]);
     const [blogs, setBlogs] = useState([]);
+    const [stats, setStats] = useState(0);
     const [loading, setLoading] = useState(true);
-
-    const statCards = [
-        { label: "Total Podcasts", value: podcasts.length, color: "from-indigo-500 to-indigo-600" },
-        { label: "Total Blogs", value: blogs.length, color: "from-pink-500 to-rose-500" },
-        { label: "Active Subscriptions", value: "—", color: "from-emerald-500 to-teal-500" },
-        { label: "Site Visitors (30d)", value: "—", color: "from-yellow-500 to-orange-500" },
-    ];
 
     // ✅ Fetch podcasts and blogs
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const [podcastRes, blogRes] = await Promise.all([
+                const [podcastRes, blogRes, dashRes] = await Promise.all([
                     getPodcasts(),
                     getAllBlogs(),
+                    getDashboardStats(),
                 ]);
                 setPodcasts(podcastRes.data.data || []);
                 setBlogs(blogRes.data.data || []);                
+                setStats(dashRes.data.stats || []);
             } catch (err) {
                 console.error("Failed to load dashboard data:", err);
                 notify.error(getErrorMessage(err));
@@ -35,9 +31,15 @@ export default function Dashboard() {
                 setLoading(false);
             }
         };
-
         fetchData();
     }, []);
+
+    const statCards = [
+        { label: "Total Podcasts", value: stats.totalPodcasts, color: "from-indigo-500 to-indigo-600" },
+        { label: "Total Blogs", value: stats.totalBlogs, color: "from-pink-500 to-rose-500" },
+        { label: "Active Subscriptions", value: "—", color: "from-emerald-500 to-teal-500" },
+        { label: "Site Visitors (30d)", value: "—", color: "from-yellow-500 to-orange-500" },
+    ];
 
     if (loading) return <Loader message="Loading data..." size={2} />;
 
@@ -55,7 +57,7 @@ export default function Dashboard() {
                         key={index}
                         whileHover={{ y: -4 }}
                         transition={{ type: "spring", stiffness: 300 }}
-                        className={`p-5 rounded-xl shadow-sm bg-gradient-to-r ${card.color} text-white flex flex-col justify-between`}
+                        className={`p-5 rounded-xl shadow-sm bg-linear-to-r ${card.color} text-white flex flex-col justify-between`}
                     >
                         <div className="text-sm opacity-90">{card.label}</div>
                         <div className="text-3xl font-semibold mt-1">{card.value}</div>

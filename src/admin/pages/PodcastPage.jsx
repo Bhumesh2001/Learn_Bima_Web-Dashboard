@@ -21,7 +21,7 @@ import useDebounce from '../hooks//UseDebounce';
 export default function PodcastPage() {
     const [podcasts, setPodcasts] = useState([]);
     const [page, setPage] = useState(1);
-    const [limit] = useState(9);
+    const [limit] = useState(12);
     const [search, setSearch] = useState("");
     const [editing, setEditing] = useState(null);
     const [showForm, setShowForm] = useState(false);
@@ -142,27 +142,33 @@ export default function PodcastPage() {
                                         {p.title}
                                     </h3>
                                     <div className="text-sm text-gray-500 mb-2">
-                                        By {p.author || "Unknown"} • {formatDate(p.createdAt)}
+                                        • {formatDate(p.createdAt)}
                                     </div>
                                     <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
                                         {p.description || "No description available."}
                                     </p>
                                 </div>
-
+                                {/* button section */}
                                 <div className="flex flex-col gap-2">
+                                    {/* Edit Button */}
                                     <button
-                                        onClick={() => { setEditing(p); setShowForm(true); }}
-                                        className="p-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition hover:cursor-pointer"
+                                        onClick={() => {
+                                            setEditing(p);
+                                            setShowForm(true);
+                                        }}
+                                        className="p-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md transition hover:cursor-pointer shadow-sm"
                                         title="Edit"
                                     >
                                         <Pencil size={18} />
                                     </button>
+
+                                    {/* Delete Button */}
                                     <button
                                         onClick={() => {
                                             setSelectedId(p.id); // set the current item id
-                                            setShowDelete(true);   // open the modal
+                                            setShowDelete(true); // open the modal
                                         }}
-                                        className="p-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition hover:cursor-pointer"
+                                        className="p-2 bg-rose-600 hover:bg-rose-700 text-white rounded-md transition hover:cursor-pointer shadow-sm"
                                         title="Delete"
                                     >
                                         <Trash2 size={18} />

@@ -3,6 +3,32 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const Academy = () => {
+    const academyData = [
+        {
+            title: "Insurance Fundamentals",
+            desc: "Understand the key concepts of life, health, and general insurance with real-world examples.",
+        },
+        {
+            title: "Financial Literacy",
+            desc: "Master personal finance, investment basics, and smart money management techniques.",
+        },
+        {
+            title: "Digital Insurance Tools",
+            desc: "Explore the future of insurance through digital innovation and emerging technologies.",
+        },
+        {
+            title: "Industry Certification",
+            desc: "Prepare for IRDAI and other financial sector certifications with expert-led training.",
+        },
+        {
+            title: "Interactive Courses",
+            desc: "Learn with engaging videos, quizzes, and practice sessions designed for all levels.",
+        },
+        {
+            title: "Expert Webinars",
+            desc: "Join live sessions hosted by professionals and thought leaders from the industry.",
+        },
+    ]
     return (
         <>
             <Header />
@@ -18,35 +44,10 @@ const Academy = () => {
                     </p>
 
                     <div className="grid gap-8 md:grid-cols-3 sm:grid-cols-2">
-                        {[
-                            {
-                                title: "Insurance Fundamentals",
-                                desc: "Understand the key concepts of life, health, and general insurance with real-world examples.",
-                            },
-                            {
-                                title: "Financial Literacy",
-                                desc: "Master personal finance, investment basics, and smart money management techniques.",
-                            },
-                            {
-                                title: "Digital Insurance Tools",
-                                desc: "Explore the future of insurance through digital innovation and emerging technologies.",
-                            },
-                            {
-                                title: "Industry Certification",
-                                desc: "Prepare for IRDAI and other financial sector certifications with expert-led training.",
-                            },
-                            {
-                                title: "Interactive Courses",
-                                desc: "Learn with engaging videos, quizzes, and practice sessions designed for all levels.",
-                            },
-                            {
-                                title: "Expert Webinars",
-                                desc: "Join live sessions hosted by professionals and thought leaders from the industry.",
-                            },
-                        ].map((course, index) => (
+                        {academyData.map((course, index) => (
                             <div
                                 key={index}
-                                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1"
+                                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 duration-500"
                             >
                                 <h3 className="text-xl font-semibold text-[#0a75a9] mb-2">{course.title}</h3>
                                 <p className="text-gray-600 text-sm">{course.desc}</p>

@@ -59,7 +59,7 @@ export default function HeroCarousel() {
                     />
 
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-start p-8">
+                    <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end items-start p-8">
                         <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4 drop-shadow-lg">
                             {slide.title}
                         </h2>
@@ -75,7 +75,7 @@ export default function HeroCarousel() {
                                     section.scrollIntoView({ behavior: "smooth" });
                                 }
                             }}
-                            className="mt-2 px-6 py-3 rounded-full text-white font-semibold bg-gradient-to-r from-[#0a75a9] to-[#094e7a] shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                            className="mt-2 px-6 py-3 rounded-full text-white font-semibold bg-linear-to-r from-[#0a75a9] to-[#094e7a] shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                         >
                             Learn More
                         </a>

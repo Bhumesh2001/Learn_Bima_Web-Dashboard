@@ -68,7 +68,7 @@ const BlogPage = () => {
         <>
             <Header />
 
-            <section className="pb-20 pt-32 px-6 bg-gradient-to-b from-[#f9fcff] to-[#e6f4ff] min-h-screen">
+            <section className="pb-20 pt-32 px-6 bg-linear-to-b from-[#f9fcff] to-[#e6f4ff] min-h-screen">
                 <div className="max-w-7xl mx-auto">
                     {/* Header */}
                     <div className="text-center mb-8">
@@ -139,7 +139,7 @@ const BlogPage = () => {
 
                                         {/* ✅ Show “Latest Batch” if applicable */}
                                         {blog.latestBatch && (
-                                            <span className="absolute top-3 left-3 flex items-center gap-1 bg-gradient-to-r from-[#0a75a9] to-[#094e7a] text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
+                                            <span className="absolute top-3 left-3 flex items-center gap-1 bg-linear-to-r from-[#0a75a9] to-[#094e7a] text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md">
                                                 <Star size={12} className="fill-yellow-400 text-yellow-400" />
                                                 Latest
                                             </span>
@@ -151,8 +151,12 @@ const BlogPage = () => {
                                         <h3 className="text-xl font-bold text-[#0a75a9] mb-2 line-clamp-2">
                                             {blog.title}
                                         </h3>
-                                        <p className="text-gray-600 text-sm line-clamp-2">
-                                            {blog.shortDescription}
+                                        <p className="text-gray-600 text-sm line-clamp-2"
+                                            dangerouslySetInnerHTML={{
+                                                __html:
+                                                    blog.shortDescription ||
+                                                    "No short description available.",
+                                            }}>
                                         </p>
                                         <div className="mt-3 flex items-center justify-between text-gray-500 text-sm">
                                             <span className="flex items-center gap-1">
