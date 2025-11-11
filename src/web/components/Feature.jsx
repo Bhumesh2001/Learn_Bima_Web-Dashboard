@@ -36,7 +36,7 @@ export default function FeaturesSection() {
     ];
 
     return (
-        <section id="vision-section" className="py-15 px-6 sm:px-12 bg-gradient-to-b from-[#f0f8ff] to-[#e0f4ff]">
+        <section id="vision-section" className="py-15 px-6 sm:px-12 bg-linear-to-b from-[#f0f8ff] to-[#e0f4ff]">
             <div className="container mx-auto text-center">
                 <h2 className="text-4xl sm:text-5xl font-extrabold mb-4 text-[#0a75a9]">
                     The <span className="text-[#45b3de] hover:text-black transition-colors">Learn Bima</span> upskill vision goes <span className="text-[#45b3de] hover:text-black transition-colors">beyond</span> careers
@@ -49,12 +49,12 @@ export default function FeaturesSection() {
                     {features.map((item, index) => (
                         <div
                             key={index}
-                            className="group relative p-8 rounded-3xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-500 bg-gradient-to-br from-white/80 to-white/90 backdrop-blur-md flex flex-col items-center text-center"
+                            className="group relative p-8 rounded-3xl shadow-2xl hover:shadow-3xl transform hover:-translate-y-1 transition-all duration-500 bg-linear-to-br from-white/80 to-white/90 backdrop-blur-md flex flex-col items-center text-center"
                         >
-                            {/* Gradient Icon Circle */}
+                            {/* linear Icon Circle */}
                             <div className="relative mb-5 w-20 h-20 flex items-center justify-center">
-                                <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#0a75a9]/50 via-[#45b3de]/40 to-[#094e7a]/50 blur-xl animate-animateGradient"></div>
-                                <div className="relative z-10 p-5 rounded-full bg-gradient-to-r from-[#0a75a9] to-[#094e7a] text-white flex items-center justify-center transition-all duration-500 group-hover:scale-110">
+                                <div className="absolute inset-0 rounded-full bg-linear-to-tr from-[#0a75a9]/50 via-[#45b3de]/40 to-[#094e7a]/50 blur-xl animate-animatelinear"></div>
+                                <div className="relative z-10 p-5 rounded-full bg-linear-to-r from-[#0a75a9] to-[#094e7a] text-white flex items-center justify-center transition-all duration-500 group-hover:scale-110">
                                     <item.icon size={40} />
                                 </div>
                             </div>
@@ -69,8 +69,8 @@ export default function FeaturesSection() {
                                 {item.caption}
                             </p>
 
-                            {/* Decorative gradient shape */}
-                            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-16 bg-gradient-to-r from-[#0a75a9]/20 via-[#45b3de]/20 to-[#094e7a]/20 rounded-full blur-3xl opacity-70 z-0"></div>
+                            {/* Decorative linear shape */}
+                            <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-32 h-16 bg-linear-to-r from-[#0a75a9]/20 via-[#45b3de]/20 to-[#094e7a]/20 rounded-full blur-3xl opacity-70 z-0"></div>
                         </div>
                     ))}
                 </div>
