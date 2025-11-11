@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { getAllBlogs, getBlogCategories } from "../../admin/services/api";
+import Loader from "../components/ui/Loader";
 
 const BlogPage = () => {
     const [blogs, setBlogs] = useState([]);
@@ -117,9 +118,13 @@ const BlogPage = () => {
 
                     {/* Blog List */}
                     {loading ? (
-                        <p className="text-center text-gray-500">Loading blogs...</p>
+                        <div className="flex justify-center items-center min-h-[60vh]">
+                            <Loader text="Fetching latest blogs..." />
+                        </div>
                     ) : blogs.length === 0 ? (
-                        <p className="text-center text-gray-500">No blogs found.</p>
+                        <p className="text-center text-gray-500 text-lg py-20">
+                            No blogs found.
+                        </p>
                     ) : (
                         <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
                             {blogs.map((blog) => (

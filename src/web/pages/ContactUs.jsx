@@ -20,7 +20,7 @@ const ContactUs = () => {
         <>
             <Header />
 
-            <section className="pt-32 pb-20 bg-gradient-to-b from-[#f9fcff] to-[#e6f4ff] min-h-screen px-6">
+            <section className="pt-32 pb-20 bg-linear-to-b from-[#f9fcff] to-[#e6f4ff] min-h-screen px-6">
                 <div className="max-w-6xl mx-auto text-center">
                     <h1 className="text-4xl sm:text-5xl font-extrabold text-[#0a75a9] mb-6">
                         📞 Contact LearnBima

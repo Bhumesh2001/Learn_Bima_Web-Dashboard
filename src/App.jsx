@@ -29,6 +29,7 @@ import BlogPageWeb from "./web/pages/BlogPage";
 import BlogDetailsPage from "./web/pages/BlogDetailsPage";
 import Academy from "./web/pages/Academy";
 import ContactUs from "./web/pages/ContactUs";
+import NotFoundPage from "./web/pages/404";
 
 // Admin pages
 import Dashboard from "./admin/pages/Dashboard";
@@ -94,6 +95,7 @@ export default function App() {
         <Route path="/blogs/:id" element={<BlogDetailsPage />} />
         <Route path="/academy" element={<Academy />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="*" element={<NotFoundPage />} />
 
         {/* ---------------------- 🧑‍💻 ADMIN ROUTES ---------------------- */}
         <Route path="/admin/login" element={<LoginPage setLoggedIn={setLoggedIn} />} />

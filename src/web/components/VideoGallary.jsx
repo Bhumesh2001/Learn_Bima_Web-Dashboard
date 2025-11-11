@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { getPodcasts } from "../../admin/services/api";
+import Loader from "../components/ui/Loader";
 
 export default function VideoPodcastGallery() {
     const [podcasts, setPodcasts] = useState([]);
@@ -48,11 +49,11 @@ export default function VideoPodcastGallery() {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center py-20">
-                <p className="text-[#0a75a9] text-lg font-semibold">Loading podcasts...</p>
+            <div className="flex justify-center items-center min-h-[60vh]">
+                <Loader text="Loading podcasts..." />
             </div>
         );
-    }
+    };
 
     if (!podcasts.length) {
         return (
@@ -60,7 +61,7 @@ export default function VideoPodcastGallery() {
                 <p className="text-gray-500 text-lg">No podcasts available.</p>
             </div>
         );
-    }
+    };
 
     // Extract YouTube video ID dynamically from URL (e.g. https://youtu.be/abc123 or full link)
     const extractYouTubeId = (url = "") => {
@@ -69,7 +70,7 @@ export default function VideoPodcastGallery() {
     };
 
     return (
-        <section className="py-15 px-5 sm:px-10 bg-gradient-to-b from-[#eaf6ff] to-[#d6efff] relative overflow-hidden">
+        <section className="py-15 px-5 sm:px-10 bg-linear-to-b from-[#eaf6ff] to-[#d6efff] relative overflow-hidden">
             {/* Title */}
             <div className="text-center mb-12">
                 <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0a75a9] mb-3 tracking-tight">
@@ -90,7 +91,7 @@ export default function VideoPodcastGallery() {
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
                     ></iframe>
-                    <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/40 to-transparent text-white p-4 sm:p-6">
+                    <div className="absolute bottom-0 left-0 w-full bg-linear-to-t from-black/40 to-transparent text-white p-4 sm:p-6">
                         <h3 className="text-lg sm:text-2xl font-semibold">{podcasts[current].title}</h3>
                     </div>
                 </div>
@@ -98,9 +99,9 @@ export default function VideoPodcastGallery() {
 
             {/* Thumbnails Carousel */}
             <div className="relative max-w-6xl mx-auto">
-                {/* Gradient blur start/end */}
-                <div className="absolute left-0 top-0 bottom-0 w-16 bg-gradient-to-r from-[#eaf6ff] via-[#eaf6ff]/80 to-transparent pointer-events-none z-10"></div>
-                <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#eaf6ff] via-[#eaf6ff]/80 to-transparent pointer-events-none z-10"></div>
+                {/* linear blur start/end */}
+                <div className="absolute left-0 top-0 bottom-0 w-16 bg-linear-to-r from-[#eaf6ff] via-[#eaf6ff]/80 to-transparent pointer-events-none z-10"></div>
+                <div className="absolute right-0 top-0 bottom-0 w-16 bg-linear-to-l from-[#eaf6ff] via-[#eaf6ff]/80 to-transparent pointer-events-none z-10"></div>
 
                 {/* Thumbnails */}
                 <div
@@ -111,7 +112,7 @@ export default function VideoPodcastGallery() {
                         <div
                             key={video._id || idx}
                             onClick={() => setCurrent(idx)}
-                            className={`cursor-pointer flex-shrink-0 w-[240px] sm:w-[280px] rounded-xl overflow-hidden transition-all duration-500 transform hover:scale-105 ${idx === current
+                            className={`cursor-pointer shrink-0 w-60 sm:w-[280px] rounded-xl overflow-hidden transition-all duration-500 transform hover:scale-105 ${idx === current
                                 ? "ring-4 ring-[#0a75a9]/80 shadow-[0_0_25px_#0a75a988]"
                                 : "opacity-80 hover:opacity-100"
                                 }`}
