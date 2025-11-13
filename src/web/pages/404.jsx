@@ -27,7 +27,7 @@ export default function NotFoundPage() {
                     <div className="flex flex-wrap justify-center gap-4">
                         <button
                             onClick={() => navigate("/")}
-                            className="flex items-center gap-2 bg-[#0a75a9] hover:bg-[#095c86] text-white px-6 py-3 rounded-full font-medium shadow-md transition-all"
+                            className="flex items-center gap-2 bg-[#0a75a9] hover:bg-[#095c86] text-white px-6 py-3 rounded-full font-medium shadow-md transition-all hover:cursor-pointer"
                         >
                             <Home size={18} />
                             Back to Home
@@ -35,7 +35,7 @@ export default function NotFoundPage() {
 
                         <button
                             onClick={() => navigate("/blog")}
-                            className="flex items-center gap-2 border border-[#0a75a9] text-[#0a75a9] hover:bg-[#e9f6ff] px-6 py-3 rounded-full font-medium shadow-md transition-all"
+                            className="flex items-center gap-2 border border-[#0a75a9] text-[#0a75a9] hover:bg-[#e9f6ff] px-6 py-3 rounded-full font-medium shadow-md transition-all hover:cursor-pointer"
                         >
                             <Search size={18} />
                             Explore Blogs

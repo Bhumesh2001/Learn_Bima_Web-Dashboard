@@ -26,7 +26,7 @@ export default function MeetExpertsSection() {
     ];
 
     return (
-        <section className="py-15 px-5 sm:px-10 md:px-20 bg-gradient-to-b from-[#f5f9ff] to-[#e0f4ff] relative overflow-hidden">
+        <section className="py-15 px-5 sm:px-10 md:px-20 bg-linear-to-b from-[#f5f9ff] to-[#e0f4ff] relative overflow-hidden">
             {/* Background Pattern */}
             <div
                 className="absolute inset-0 z-0 opacity-10"
@@ -52,7 +52,7 @@ export default function MeetExpertsSection() {
                             className="relative p-6 rounded-3xl bg-white shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 text-center flex flex-col items-center"
                         >
                             {/* Gradient Overlay */}
-                            <div className="absolute -top-8 -left-8 w-28 h-28 sm:w-36 sm:h-36 bg-gradient-to-tr from-[#0a75a9] via-[#45b3de] to-[#0a75a9] rounded-full opacity-30 blur-3xl animate-animateGradient"></div>
+                            <div className="absolute -top-8 -left-8 w-28 h-28 sm:w-36 sm:h-36 bg-linear-to-tr from-[#0a75a9] via-[#45b3de] to-[#0a75a9] rounded-full opacity-30 blur-3xl animate-animateGradient"></div>
 
                             <img
                                 src={expert.img}

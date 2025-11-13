@@ -35,7 +35,7 @@ export default function HeroSection() {
                     <div className="mt-6">
                         <a
                             href="#"
-                            onClick={() => navigate("/contact")}
+                            onClick={() => navigate("/academy")}
                             className="inline-block px-8 py-4 bg-linear-to-r from-[#0a75a9] to-[#45b3de] text-white font-bold rounded-xl shadow-lg hover:scale-105 transition-transform duration-300"
                         >
                             Explore Courses

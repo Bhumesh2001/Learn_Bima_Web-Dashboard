@@ -27,17 +27,6 @@ export default function Header() {
         return () => window.removeEventListener("scroll", controlHeader);
     }, [lastScrollY]);
 
-    useEffect(() => {
-        if (location.state?.scrollTo) {
-            const section = document.getElementById(location.state.scrollTo);
-            if (section) {
-                setTimeout(() => {
-                    section.scrollIntoView({ behavior: "smooth" });
-                }, 200);
-            }
-        }
-    }, [location]);
-
     const menuItems = ["Home", "About Us", "Academy", "Contact Us"];
 
     return (
@@ -75,7 +64,7 @@ export default function Header() {
                                     navigate('/contact')
                                 } else if (item === "About Us") {
                                     if (location.pathname !== "/") {
-                                        navigate("/", { state: { scrollTo: "upskill-section" }, replace: true });
+                                        navigate("/", { state: { scrollTo: "upskill-section" } });
                                     } else {
                                         const section = document.getElementById("upskill-section");
                                         if (section) {

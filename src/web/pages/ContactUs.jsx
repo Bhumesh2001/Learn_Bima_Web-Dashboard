@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { motion } from "framer-motion";
 
 const ContactUs = () => {
     const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -20,19 +21,37 @@ const ContactUs = () => {
         <>
             <Header />
 
-            <section className="pt-32 pb-20 bg-linear-to-b from-[#f9fcff] to-[#e6f4ff] min-h-screen px-6">
+            <section className="pt-33 pb-20 bg-linear-to-b from-[#f9fcff] to-[#e6f4ff] min-h-screen px-6">
                 <div className="max-w-6xl mx-auto text-center">
-                    <h1 className="text-4xl sm:text-5xl font-extrabold text-[#0a75a9] mb-6">
+                    <motion.h1
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        className="text-4xl sm:text-5xl font-extrabold text-[#0a75a9] mb-6"
+                    >
                         📞 Contact LearnBima
-                    </h1>
-                    <p className="text-gray-600 text-lg mb-12">
+                    </motion.h1>
+
+                    <motion.p
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                        className="text-gray-600 text-lg mb-12"
+                    >
                         Have questions or suggestions? We’d love to hear from you.
-                    </p>
+                    </motion.p>
 
                     <div className="grid md:grid-cols-2 gap-10">
                         {/* Contact Info */}
-                        <div className="bg-white shadow-lg rounded-2xl p-8 text-left">
-                            <h3 className="text-2xl font-semibold text-[#0a75a9] mb-6">Get in Touch</h3>
+                        <motion.div
+                            initial={{ opacity: 0, x: -40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="bg-white shadow-lg rounded-2xl p-8 text-left border border-transparent hover:border-[#0a75a9]/20 transition-all"
+                        >
+                            <h3 className="text-2xl font-semibold text-[#0a75a9] mb-6">
+                                Get in Touch
+                            </h3>
 
                             <div className="flex items-center gap-3 mb-4">
                                 <Mail size={20} className="text-[#0a75a9]" />
@@ -52,7 +71,6 @@ const ContactUs = () => {
                                 </p>
                             </div>
 
-                            {/* Embedded Google Map */}
                             <div className="w-full h-64 rounded-xl overflow-hidden shadow-md">
                                 <iframe
                                     title="Sentientia Interactive Services Pvt. Ltd."
@@ -64,14 +82,19 @@ const ContactUs = () => {
                                     referrerPolicy="no-referrer-when-downgrade"
                                 ></iframe>
                             </div>
-                        </div>
+                        </motion.div>
 
                         {/* Contact Form */}
-                        <form
+                        <motion.form
                             onSubmit={handleSubmit}
-                            className="bg-white shadow-lg rounded-2xl p-8 text-left"
+                            initial={{ opacity: 0, x: 40 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.6 }}
+                            className="bg-white shadow-lg rounded-2xl p-8 text-left border border-transparent hover:border-[#0a75a9]/20 transition-all"
                         >
-                            <h3 className="text-2xl font-semibold text-[#0a75a9] mb-6">Send a Message</h3>
+                            <h3 className="text-2xl font-semibold text-[#0a75a9] mb-6">
+                                Send a Message
+                            </h3>
 
                             <div className="mb-4">
                                 <label className="block text-gray-700 mb-2">Full Name</label>
@@ -81,7 +104,7 @@ const ContactUs = () => {
                                     value={form.name}
                                     onChange={handleChange}
                                     required
-                                    className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0a75a9] outline-none"
+                                    className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0a75a9] outline-none transition"
                                 />
                             </div>
 
@@ -93,7 +116,7 @@ const ContactUs = () => {
                                     value={form.email}
                                     onChange={handleChange}
                                     required
-                                    className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0a75a9] outline-none"
+                                    className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0a75a9] outline-none transition"
                                 />
                             </div>
 
@@ -105,17 +128,19 @@ const ContactUs = () => {
                                     onChange={handleChange}
                                     required
                                     rows="5"
-                                    className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0a75a9] outline-none resize-none"
+                                    className="w-full border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-[#0a75a9] outline-none resize-none transition"
                                 ></textarea>
                             </div>
 
-                            <button
+                            <motion.button
                                 type="submit"
-                                className="w-full bg-[#0a75a9] text-white font-semibold py-3 rounded-xl hover:bg-[#095d88] transition hover:cursor-pointer"
+                                whileHover={{ scale: 1.03 }}
+                                whileTap={{ scale: 0.97 }}
+                                className="w-full bg-[#0a75a9] text-white font-semibold py-3 rounded-xl hover:bg-[#095d88] transition"
                             >
                                 Send Message
-                            </button>
-                        </form>
+                            </motion.button>
+                        </motion.form>
                     </div>
                 </div>
             </section>

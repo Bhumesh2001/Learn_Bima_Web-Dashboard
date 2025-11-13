@@ -7,7 +7,7 @@ export default function Footer() {
     return (
         <footer className="bg-gray-900 text-white pt-10 relative overflow-hidden">
             {/* Wave Shape */}
-            <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
+            <div className="absolute top-0 left-0 w-full overflow-hidden leading-0">
                 <svg
                     className="relative block w-full h-20"
                     xmlns="http://www.w3.org/2000/svg"
@@ -38,17 +38,21 @@ export default function Footer() {
                     {/* Social Icons */}
                     <div className="flex space-x-4 mt-2">
                         <a
-                            href="#"
-                            onClick={() => navigate('/contact')}
+                            href="https://www.facebook.com/Sentientia/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="p-3 rounded-full border border-gray-600 hover:border-blue-500 transition-all duration-300"
                         >
                             <Facebook
                                 size={20}
-                                className="text-gray-300 hover:text-blue-500 transition-colors duration-300" />
+                                className="text-gray-300 hover:text-blue-500 transition-colors duration-300"
+                            />
                         </a>
+
                         <a
-                            href="#"
-                            onClick={() => navigate('/contact')}
+                            href="https://x.com"  // ✅ Corrected URL
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="p-3 rounded-full border border-gray-600 hover:border-white transition-all duration-300"
                         >
                             <svg
@@ -60,9 +64,11 @@ export default function Footer() {
                                 <path d="M18.9 2H22l-9.9 11.5L22 22h-3.1l-7.7-8.5L3.5 22H.4l10.7-12.4L.4 2h3.2l7.2 8.1L18.9 2z" />
                             </svg>
                         </a>
+
                         <a
-                            href="#"
-                            onClick={() => navigate('/contact')}
+                            href="https://www.linkedin.com/company/sentientia/"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="p-3 rounded-full border border-gray-600 hover:border-blue-600 transition-all duration-300"
                         >
                             <Linkedin
@@ -70,9 +76,11 @@ export default function Footer() {
                                 className="text-gray-300 hover:text-blue-600 transition-colors duration-300"
                             />
                         </a>
+
                         <a
-                            href="#"
-                            onClick={() => navigate('/contact')}
+                            href="https://www.instagram.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="p-3 rounded-full border border-gray-600 hover:border-pink-500 transition-all duration-300"
                         >
                             <Instagram
@@ -110,7 +118,6 @@ export default function Footer() {
                             <a
                                 href="#"
                                 onClick={() => navigate('/')}
-
                                 className="hover:text-white transition-colors"
                             >
                                 Home
@@ -118,9 +125,11 @@ export default function Footer() {
                         </li>
                         <li>
                             <a
-                                href="#"
-                                onClick={() => navigate('/')}
-
+                                href="/#upskill-section"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    navigate("/#upskill-section");
+                                }}
                                 className="hover:text-white transition-colors"
                             >
                                 About Us
@@ -130,7 +139,6 @@ export default function Footer() {
                             <a
                                 href="#"
                                 onClick={() => navigate('/academy')}
-
                                 className="hover:text-white transition-colors"
                             >
                                 Academy
@@ -172,7 +180,7 @@ export default function Footer() {
                             className="flex-1 px-4 py-2 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                         <button
-                            onClick={() => navigate('/contact')}
+                            // onClick={() => navigate('/contact')}
                             className="px-6 py-2 bg-[#2b6aa4] rounded-md text-white font-semibold hover:bg-[#186ca2] transition-colors hover:cursor-pointer">
                             Subscribe
                         </button>
@@ -181,8 +189,10 @@ export default function Footer() {
             </div>
 
             {/* Copyright */}
-            <div className="mt-10 border-t border-gray-700 py-3 text-center bg-gradient-to-r from-[#0a75a9]/10 to-[#45b3de]/10 relative z-10">
-                <p className="text-gray-400 font-medium">&copy; 2025 LearnBima. All rights reserved.</p>
+            <div className="mt-10 border-t border-gray-700 py-3 text-center bg-linear-to-r from-[#0a75a9]/10 to-[#45b3de]/10 relative z-10">
+                <p className="text-gray-400 font-medium">
+                    &copy; {new Date().getFullYear()} LearnBima. All rights reserved.
+                </p>
             </div>
         </footer>
     );

@@ -10,6 +10,7 @@ import Sidebar from "./admin/components/Sidebar";
 import Footer from "./admin/components/Footer";
 import ProtectedRoute from "./admin/routes/ProtectedRoute";
 import { getProfile } from "./admin/services/api";
+import ScrollToSection from "./web/components/ui/Scroll";
 
 // Web components
 import Carousel from "./web/components/Carousel";
@@ -67,6 +68,7 @@ export default function App() {
 
   return (
     <Router>
+      <ScrollToSection />
       <Routes>
         {/* ---------------------- 🌐 WEB ROUTES ---------------------- */}
         <Route
