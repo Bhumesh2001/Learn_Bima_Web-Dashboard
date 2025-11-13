@@ -78,7 +78,7 @@ export default function Footer() {
                         </a>
 
                         <a
-                            href="https://www.instagram.com"
+                            href="https://www.instagram.com/sentientia.ai"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="p-3 rounded-full border border-gray-600 hover:border-pink-500 transition-all duration-300"
